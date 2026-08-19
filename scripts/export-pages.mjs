@@ -5,7 +5,7 @@ import { join, resolve } from "node:path";
 const port = Number(process.env.FITLET_PAGES_PORT ?? 4173);
 const root = resolve("dist/client");
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/^\/+|\/+$/g, "");
-const routes = ["/", "/friend", "/legal", "/pose-calibration", "/privacy", "/support", "/terms"];
+const routes = ["/", "/friend", "/legal", "/pose-calibration", "/privacy", "/store-screenshot", "/support", "/terms"];
 const server = spawn("node_modules/.bin/vinext", ["start", "--port", String(port)], { env: process.env, stdio: "inherit" });
 
 const stopServer = () => {

@@ -996,3 +996,141 @@ img { display: block; max-width: 100%; }
   .fitlet-new-faq-answer > p,
   .fitlet-new-faq-list summary span { opacity: 1; transform: none; transition: none; }
 }
+
+/* App Store artwork: fixed 1290×2796 output for the 6.7-inch portrait slot. */
+.store-shot {
+  --store-bg: #e4f5f4;
+  --store-ink: #111318;
+  position: relative;
+  width: 1290px;
+  height: 2796px;
+  overflow: hidden;
+  margin: 0;
+  background: var(--store-bg);
+  color: var(--store-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  isolation: isolate;
+}
+.store-shot * { box-sizing: border-box; }
+.store-shot::after {
+  position: absolute;
+  z-index: 6;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 170px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), var(--store-bg) 88%);
+  content: "";
+  pointer-events: none;
+}
+.store-shot-brand {
+  position: absolute;
+  z-index: 8;
+  top: 118px;
+  left: 110px;
+  width: 190px;
+}
+.store-shot-brand img { display: block; width: 100%; max-width: none; height: auto; }
+.store-shot-pro-badge {
+  position: absolute;
+  z-index: 8;
+  top: 116px;
+  right: 110px;
+  border-radius: 999px;
+  padding: 16px 25px 14px;
+  background: #fff;
+  color: #111318;
+  font-size: 24px;
+  font-weight: 950;
+  letter-spacing: .08em;
+}
+.store-shot-copy {
+  position: absolute;
+  z-index: 7;
+  top: 286px;
+  right: 110px;
+  left: 110px;
+}
+.store-shot-copy h1 {
+  max-width: 1080px;
+  margin: 0;
+  font-size: 124px;
+  font-weight: 950;
+  letter-spacing: -.105em;
+  line-height: 1.02;
+}
+.store-shot-copy p {
+  max-width: 900px;
+  margin: 34px 0 0;
+  color: rgba(17,19,24,.62);
+  font-size: 31px;
+  font-weight: 780;
+  letter-spacing: -.045em;
+  line-height: 1.45;
+}
+.store-shot-phone {
+  position: absolute;
+  z-index: 3;
+  top: 900px;
+  left: 85px;
+  width: 1120px;
+  margin: 0;
+  border: 14px solid #14171b;
+  border-radius: 112px 112px 0 0;
+  padding: 12px;
+  background: linear-gradient(105deg, #111318, #30343a 46%, #111318);
+  box-shadow: 0 35px 60px rgba(17,19,24,.24), 0 2px 0 rgba(255,255,255,.26) inset;
+}
+.store-shot-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1170 / 2532;
+  overflow: hidden;
+  border-radius: 96px 96px 0 0;
+  background: #fff;
+}
+.store-shot-screen img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+.store-shot-notch {
+  position: absolute;
+  z-index: 2;
+  top: 35px;
+  left: 50%;
+  width: 31%;
+  height: 78px;
+  border-radius: 999px;
+  background: #070809;
+  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset;
+  transform: translateX(-50%);
+}
+.store-shot-side-button {
+  position: absolute;
+  z-index: -1;
+  width: 10px;
+  border-radius: 7px 0 0 7px;
+  background: #2d3035;
+  box-shadow: 0 1px 0 rgba(255,255,255,.14) inset;
+}
+.store-shot-side-button-left-one { top: 31%; left: -23px; height: 5.3%; }
+.store-shot-side-button-left-two { top: 40%; left: -23px; height: 5.3%; }
+.store-shot-side-button-left-three { top: 49%; left: -23px; height: 5.3%; }
+.store-shot-side-button-right { top: 37%; right: -23px; height: 12%; border-radius: 0 7px 7px 0; }
+.store-shot-session { --store-bg: #fff0e8; }
+.store-shot-training { --store-bg: #eef6d6; }
+.store-shot-league { --store-bg: #fff9e8; }
+.store-shot-profile { --store-bg: #f4f3ef; }
+.store-shot-coach {
+  --store-bg: #10131b;
+  --store-ink: #fff;
+}
+.store-shot-coach .store-shot-brand { filter: brightness(0) invert(1); }
+.store-shot-coach .store-shot-copy p { color: #c9ced3; }
+.store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.1) inset; }
+
+@media (prefers-reduced-motion: reduce) {
+  .store-shot { scroll-behavior: auto; }
+}
