@@ -6,9 +6,7 @@ const isPagesBuild = process.env.FITLET_PAGES === "true";
 const metadataBase = isPagesBuild
   ? new URL("https://zenhancelabs.github.io/fitlet-website/")
   : undefined;
-const socialImage = isPagesBuild
-  ? "https://zenhancelabs.github.io/fitlet-website/brand/fitlet-logo.svg"
-  : "/brand/fitlet-logo.svg";
+const socialImage = "https://zenhancelabs.github.io/fitlet-website/brand/fitlet-logo.svg";
 const iconPath = `${basePath}/brand/fitlet-ios-icon.png`;
 
 export const viewport: Viewport = {
