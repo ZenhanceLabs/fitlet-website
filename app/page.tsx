@@ -77,8 +77,8 @@ export default function Home() {
 
       <Reveal><section className="fitlet-new-screens fitlet-new-shell" id="screens">
         <div className="fitlet-new-section-head">
-          <div><h2>画面で見る、<br /><span>Fitletのある毎日。</span></h2></div>
-          <p>マップを進んで、トレーニングして、記録を残す。Fitletでの毎日を画面から紹介します。</p>
+          <div><h2>Fitletのある<br /><span>毎日。</span></h2></div>
+          <p>マップを進んで、トレーニングして、記録を残す。動くことが、少しずつ続いていきます。</p>
         </div>
         <div className="fitlet-new-screen-grid">
           <ScreenCard
