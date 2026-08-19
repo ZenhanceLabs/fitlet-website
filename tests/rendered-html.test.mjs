@@ -32,7 +32,7 @@ test("server-renders the Fitlet home page", async () => {
   assert.match(html, /[/]app-screens[/]ja[/]real-profile\.png/);
   assert.match(html, /[/]brand[/]fitlet-pro-logo\.svg/);
   assert.match(html, /プライバシーポリシー/);
-  assert.match(html, /href="\/terms"/);
+  assert.match(html, /href="\/terms\/?"/);
   assert.doesNotMatch(html, /\/app-materials\/ui\//);
   assert.doesNotMatch(html, /coach-analysis\.png|Fitletコーチタブの分析画面/);
   assert.doesNotMatch(html, /UIカタログ|39種目を、<br\/>アプリの素材で見る|ヨガ|yoga|FITLET APP|ACTUAL SCREENS|store-assets|store-screenshots|ホームタブの実画面|トレーニング中の実画面/);
@@ -48,8 +48,8 @@ test("server-renders legal routes", async () => {
     assert.doesNotMatch(html, /Your site is taking shape|codex-preview/);
     if (pathname === "/legal") {
       assert.match(html, /プライバシー・利用規約/);
-      assert.match(html, /href="\/privacy"/);
-      assert.match(html, /href="\/terms"/);
+      assert.match(html, /href="\/privacy\/?"/);
+      assert.match(html, /href="\/terms\/?"/);
       assert.doesNotMatch(html, /1\. 取得する情報|第1条（適用・同意）/);
       assert.doesNotMatch(html, /エクスポート|インポート|公開前に必ず確定|現行アプリのコード/);
     }
@@ -67,8 +67,8 @@ test("server-renders legal routes", async () => {
       assert.match(html, /zenhancelabs@gmail\.com/);
       assert.match(html, /forms\.gle\/A6AuxEZ4otXFmGQ28/);
       assert.match(html, /x\.com\/ZenhanceLabs/);
-      assert.match(html, /href="\/privacy"/);
-      assert.match(html, /href="\/terms"/);
+      assert.match(html, /href="\/privacy\/?"/);
+      assert.match(html, /href="\/terms\/?"/);
     }
     if (pathname === "/friend") {
       assert.match(html, /Fitletでフレンドになる/);

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { LegalPage } from "./SiteChrome";
 import { sitePath } from "../lib/sitePath";
 
@@ -37,19 +36,19 @@ export function LegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
           <p className="legal-kicker">プライバシー</p>
           <h2>データの扱いを知る</h2>
           <p>Fitletが取得する情報、利用目的、第三者サービスとの連携、保存・削除の方法を説明しています。</p>
-          <Link className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/privacy")}>プライバシーポリシーを読む <span aria-hidden="true">↗</span></Link>
+          <a className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/privacy")}>プライバシーポリシーを読む <span aria-hidden="true">↗</span></a>
         </section>
         <section id="terms">
           <p className="legal-kicker">利用規約</p>
           <h2>サービスの利用条件</h2>
           <p>Fitletの使い方、アカウント、Proの購入、禁止事項、サービス変更について定めています。</p>
-          <Link className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/terms")}>利用規約を読む <span aria-hidden="true">↗</span></Link>
+          <a className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/terms")}>利用規約を読む <span aria-hidden="true">↗</span></a>
         </section>
         <section id="contact">
           <p className="legal-kicker">お問い合わせ</p>
           <h2>不明点があるときは</h2>
           <p>個人情報の開示・削除、購入、アプリの不具合についてはお問い合わせページからご連絡ください。</p>
-          <Link className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/support")}>お問い合わせへ <span aria-hidden="true">↗</span></Link>
+          <a className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/support")}>お問い合わせへ <span aria-hidden="true">↗</span></a>
         </section>
       </LegalPage>
     );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Reveal } from "./components/Reveal";
 import { publicAsset } from "./lib/publicAsset";
 import { sitePath } from "./lib/sitePath";
@@ -42,14 +41,14 @@ export default function Home() {
   return (
     <main className="fitlet-new-site" id="top">
       <header className="fitlet-new-nav">
-        <Link href="#top" className="fitlet-new-logo" aria-label="Fitlet ホーム">
+        <a href="#top" className="fitlet-new-logo" aria-label="Fitlet ホーム">
           <img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" />
-        </Link>
+        </a>
         <nav aria-label="メインナビゲーション">
-          <Link href="#top">ホーム</Link>
-          <Link href={sitePath("/privacy")}>プライバシーポリシー</Link>
-          <Link href={sitePath("/terms")}>利用規約</Link>
-          <Link href={sitePath("/support")}>お問い合わせ</Link>
+          <a href="#top">ホーム</a>
+          <a href={sitePath("/privacy")}>プライバシーポリシー</a>
+          <a href={sitePath("/terms")}>利用規約</a>
+          <a href={sitePath("/support")}>お問い合わせ</a>
           <a className="fitlet-new-nav-cta" href="#start">はじめる</a>
         </nav>
       </header>
@@ -160,13 +159,13 @@ export default function Home() {
         <section className="fitlet-new-today fitlet-new-shell" id="start">
           <div className="fitlet-new-today-card">
             <div><p className="fitlet-new-label">Fitlet</p><h2>まずは、<br />今日のひとつから。</h2><p>今日のひとつが、明日も動くきっかけになる。</p></div>
-            <Link className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/support")}>お問い合わせを見る <span aria-hidden="true">↗</span></Link>
+            <a className="fitlet-new-button fitlet-new-button-dark" href={sitePath("/support")}>お問い合わせを見る <span aria-hidden="true">↗</span></a>
           </div>
         </section>
 
         <footer className="fitlet-new-footer fitlet-new-shell">
-          <div><Link href="#top" className="fitlet-new-logo"><img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" /></Link><p>ちょっと動くを、習慣に。</p></div>
-          <nav aria-label="フッターナビゲーション"><Link href="#top">ホーム</Link><Link href={sitePath("/support")}>お問い合わせ</Link><Link href={sitePath("/privacy")}>プライバシーポリシー</Link><Link href={sitePath("/terms")}>利用規約</Link></nav>
+          <div><a href="#top" className="fitlet-new-logo"><img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" /></a><p>ちょっと動くを、習慣に。</p></div>
+          <nav aria-label="フッターナビゲーション"><a href="#top">ホーム</a><a href={sitePath("/support")}>お問い合わせ</a><a href={sitePath("/privacy")}>プライバシーポリシー</a><a href={sitePath("/terms")}>利用規約</a></nav>
         </footer>
       </div>
     </main>

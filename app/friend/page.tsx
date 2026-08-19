@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { SiteChrome } from "../components/SiteChrome";
 import { Reveal } from "../components/Reveal";
 import { sitePath } from "../lib/sitePath";
@@ -30,7 +29,7 @@ export default function FriendLinkPage() {
             {friendCode && <div className="fitlet-new-friend-code" aria-label={`フレンドコード ${friendCode}`}><span>フレンドコード</span><strong>{friendCode}</strong></div>}
             <div className="fitlet-new-friend-actions">
               <a className="fitlet-new-button fitlet-new-button-dark" href={appLink}>Fitletでフレンドになる <span aria-hidden="true">↗</span></a>
-              <Link className="fitlet-new-button fitlet-new-button-light" href={sitePath("/")}>Fitletの紹介を見る <span aria-hidden="true">↗</span></Link>
+              <a className="fitlet-new-button fitlet-new-button-light" href={sitePath("/")}>Fitletの紹介を見る <span aria-hidden="true">↗</span></a>
             </div>
             <p className="fitlet-new-friend-note">アプリが開かない場合は、Fitletをインストールしてからこのリンクをもう一度開いてください。</p>
           </section>

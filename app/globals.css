@@ -937,11 +937,12 @@ img { display: block; max-width: 100%; }
 .fitlet-new-friend-note { margin: 22px 0 0; color: var(--new-muted); font-size: 13px; font-weight: 700; }
 
 .fitlet-reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
   transition: opacity .72s cubic-bezier(.2,.8,.2,1), transform .72s cubic-bezier(.2,.8,.2,1);
 }
-.fitlet-reveal.is-visible { opacity: 1; transform: none; }
+.fitlet-reveal.is-ready { opacity: 0; transform: translateY(24px); }
+.fitlet-reveal.is-ready.is-visible { opacity: 1; transform: none; }
 
 .fitlet-new-faq-answer {
   display: grid;
@@ -979,6 +980,7 @@ img { display: block; max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .fitlet-reveal,
+  .fitlet-reveal.is-ready,
   .fitlet-new-faq-answer,
   .fitlet-new-faq-answer > p,
   .fitlet-new-faq-list summary span { opacity: 1; transform: none; transition: none; }

@@ -8,6 +8,7 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
   useEffect(() => {
     const element = ref.current;
     if (!element) return undefined;
+    element.classList.add("is-ready");
     if (typeof IntersectionObserver === "undefined") {
       element.classList.add("is-visible");
       return undefined;
