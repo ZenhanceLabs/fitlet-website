@@ -785,14 +785,16 @@ img { display: block; max-width: 100%; }
 .fitlet-new-screens { padding-block: 86px 138px; }
 .fitlet-new-section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .58fr); gap: 30px 90px; align-items: end; }
 .fitlet-new-section-head > p { max-width: 360px; margin-bottom: 3px; color: var(--new-muted); font-size: 15px; font-weight: 750; line-height: 1.8; }
-.fitlet-new-screen-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; margin-top: 62px; }
+.fitlet-new-screen-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 62px; }
 .fitlet-new-screen-card { display: grid; grid-template-columns: minmax(0, .7fr) minmax(180px, .62fr); min-width: 0; container-type: inline-size; gap: 24px; overflow: hidden; border-radius: 30px; padding: 26px; }
-.fitlet-new-screen-home { grid-column: span 7; background: var(--new-cyan); }
-.fitlet-new-screen-session { grid-column: span 5; background: var(--new-coral); }
-.fitlet-new-screen-training { grid-column: span 5; background: var(--new-lime); }
-.fitlet-new-screen-league { grid-column: span 7; background: var(--new-cream); }
-.fitlet-new-screen-coach { grid-column: span 7; background: #eef0ed; }
-.fitlet-new-screen-profile { grid-column: span 5; background: #f4f3ef; }
+.fitlet-new-screen-home, .fitlet-new-screen-session, .fitlet-new-screen-training,
+.fitlet-new-screen-league, .fitlet-new-screen-coach, .fitlet-new-screen-profile { grid-column: 1 / -1; }
+.fitlet-new-screen-home { background: var(--new-cyan); }
+.fitlet-new-screen-session { background: var(--new-coral); }
+.fitlet-new-screen-training { background: var(--new-lime); }
+.fitlet-new-screen-league { background: var(--new-cream); }
+.fitlet-new-screen-coach { background: #eef0ed; }
+.fitlet-new-screen-profile { background: #f4f3ef; }
 .fitlet-new-screen-copy { align-self: start; padding-top: 6px; }
 .fitlet-new-screen-copy h3 { margin: 16px 0 15px; font-size: clamp(28px, 3vw, 44px); font-weight: 950; line-height: 1.03; }
 .fitlet-new-screen-copy > p:last-child { max-width: 260px; margin-bottom: 0; color: #5e6669; font-size: 14px; font-weight: 750; line-height: 1.75; }
@@ -903,14 +905,14 @@ img { display: block; max-width: 100%; }
 /* Final polish: slim hardware, one shared chrome, and calm motion. */
 .fitlet-new-device {
   border-width: 3px;
-  border-radius: clamp(30px, 5.5vw, 48px);
+  border-radius: 11% / 4.8%;
   padding: 2px;
   box-shadow: 0 20px 38px rgba(22, 24, 27, .16), 0 1px 0 rgba(255,255,255,.08) inset;
 }
-.fitlet-new-device-screen { border-radius: clamp(27px, 5vw, 44px); }
+.fitlet-new-device-screen { border-radius: 9.5% / 4%; }
 .fitlet-new-device-notch {
-  top: 6px;
-  height: clamp(16px, 1.8vw, 23px);
+  top: 1.1%;
+  height: 3.2%;
 }
 .fitlet-new-device-side-button { width: 2.5px; }
 .fitlet-new-device-side-button-top { left: -6px; }
