@@ -1000,6 +1000,7 @@ img { display: block; max-width: 100%; }
 /* App Store artwork: fixed 1290×2796 output for the 6.7-inch portrait slot. */
 .store-shot {
   --store-bg: #e4f5f4;
+  --store-accent: #20b8c3;
   --store-ink: #111318;
   position: relative;
   width: 1290px;
@@ -1026,52 +1027,62 @@ img { display: block; max-width: 100%; }
 .store-shot-brand {
   position: absolute;
   z-index: 8;
-  top: 118px;
-  left: 110px;
-  width: 190px;
+  top: 94px;
+  left: 100px;
+  width: 320px;
 }
 .store-shot-brand img { display: block; width: 100%; max-width: none; height: auto; }
 .store-shot-pro-badge {
   position: absolute;
   z-index: 8;
-  top: 116px;
-  right: 110px;
+  top: 100px;
+  right: 100px;
   border-radius: 999px;
-  padding: 16px 25px 14px;
+  padding: 20px 30px 18px;
   background: #fff;
   color: #111318;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 950;
   letter-spacing: .08em;
 }
 .store-shot-copy {
   position: absolute;
   z-index: 7;
-  top: 286px;
-  right: 110px;
-  left: 110px;
+  top: 350px;
+  right: 100px;
+  left: 100px;
+  text-align: center;
 }
 .store-shot-copy h1 {
-  max-width: 1080px;
+  max-width: 1180px;
   margin: 0;
-  font-size: 124px;
+  font-size: 164px;
   font-weight: 950;
   letter-spacing: -.105em;
   line-height: 1.02;
 }
+.store-shot-copy h1 span {
+  white-space: nowrap;
+  text-decoration-line: underline;
+  text-decoration-thickness: 11px;
+  text-decoration-color: var(--store-accent);
+  text-underline-offset: 14px;
+}
 .store-shot-copy p {
-  max-width: 900px;
-  margin: 34px 0 0;
-  color: rgba(17,19,24,.62);
-  font-size: 31px;
+  max-width: 1060px;
+  margin: 42px 0 0;
+  color: rgba(17,19,24,.76);
+  font-size: 45px;
   font-weight: 780;
   letter-spacing: -.045em;
   line-height: 1.45;
+  margin-right: auto;
+  margin-left: auto;
 }
 .store-shot-phone {
   position: absolute;
   z-index: 3;
-  top: 900px;
+  top: 1050px;
   left: 85px;
   width: 1120px;
   margin: 0;
@@ -1119,15 +1130,17 @@ img { display: block; max-width: 100%; }
 .store-shot-side-button-left-two { top: 40%; left: -23px; height: 5.3%; }
 .store-shot-side-button-left-three { top: 49%; left: -23px; height: 5.3%; }
 .store-shot-side-button-right { top: 37%; right: -23px; height: 12%; border-radius: 0 7px 7px 0; }
-.store-shot-session { --store-bg: #fff0e8; }
-.store-shot-training { --store-bg: #eef6d6; }
-.store-shot-league { --store-bg: #fff9e8; }
-.store-shot-profile { --store-bg: #f4f3ef; }
+.store-shot-session { --store-bg: #fff0e8; --store-accent: #22c9df; }
+.store-shot-training { --store-bg: #eef6d6; --store-accent: #75bd4d; }
+.store-shot-league { --store-bg: #fff9e8; --store-accent: #d99446; }
+.store-shot-profile { --store-bg: #f4f3ef; --store-accent: #fa5b91; }
 .store-shot-coach {
   --store-bg: #10131b;
+  --store-accent: #f0c25d;
   --store-ink: #fff;
 }
 .store-shot-coach .store-shot-brand { filter: brightness(0) invert(1); }
+.store-shot-coach .store-shot-copy h1 { font-size: 140px; }
 .store-shot-coach .store-shot-copy p { color: #c9ced3; }
 .store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.1) inset; }
 

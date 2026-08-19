@@ -5,34 +5,34 @@ import { publicAsset } from "../lib/publicAsset";
 
 const scenes = {
   home: {
-    title: <>動くと、<br />マップが進む。</>,
-    detail: "終えるたびに、次の場所へ。",
+    title: <>動くと、<br /><span>マップが進む。</span></>,
+    detail: "終えるたび、次の場所へ。",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
-    title: <>カメラが、<br />回数を数える。</>,
-    detail: "動きを捉えて、回数を自動でカウント。",
+    title: <>カメラが、<br /><span>回数を数える。</span></>,
+    detail: "動きを捉えて、自動でカウント。",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
-    title: <>好きな運動から、<br />始められる。</>,
-    detail: "39種目から選んで、自分のセットを作れます。",
+    title: <><span>好きな運動から、</span><br />始められる。</>,
+    detail: "39種目から、自由に選べる。",
     src: "/app-screens/ja/real-training.png",
   },
   league: {
-    title: <>動いた分だけ、<br />順位が変わる。</>,
-    detail: "毎週のFPで、仲間と競えます。",
+    title: <>動いた分だけ、<br /><span>順位が変わる。</span></>,
+    detail: "毎週のFPで、仲間と競える。",
     src: "/app-screens/ja/real-league.png",
   },
   coach: {
-    title: <>今日のメニューを、<br />コーチに任せる。</>,
-    detail: "Proなら、目標や記録に合わせて提案。",
+    title: <>今日のメニューを、<br /><span>コーチに任せる。</span></>,
+    detail: "Proなら、次の運動を提案。",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
   },
   profile: {
-    title: <>続けた記録が、<br />残っていく。</>,
-    detail: "レベルや連続日数を、いつでも振り返れます。",
+    title: <><span>続けた記録</span>が、<br />残っていく。</>,
+    detail: "続けた日数やレベルを記録。",
     src: "/app-screens/ja/real-profile.png",
   },
 } as const;
