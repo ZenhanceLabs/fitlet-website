@@ -114,14 +114,6 @@ export default function Home() {
             alt="Fitletリーグ。Bronze IIIと週間ランキング"
           />
           <ScreenCard
-            className="fitlet-new-screen-coach"
-            label="コーチ"
-            title="次のメニューを、任せる。"
-            body="Proなら、コーチが組んだおすすめコースを続けられます。"
-            src={publicAsset("/app-screens/ja/real-coach.png")}
-            alt="Fitletコーチ。Proのバランスコース"
-          />
-          <ScreenCard
             className="fitlet-new-screen-profile"
             label="プロフィール"
             title="続けた記録が残る。"
