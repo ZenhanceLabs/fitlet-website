@@ -3,44 +3,44 @@
 import { useEffect } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-08-23-3";
+const storeImageVersion = "2026-08-23-4";
 
 const scenes = {
   home: {
     label: "ホーム",
-    title: <><span className="store-shot-title-line">動くと、</span><span className="store-shot-title-line store-shot-title-emphasis">マップが進む。</span></>,
-    detail: "終えるたび、次の場所へ。",
+    title: <><span className="store-shot-title-line">動くと</span><span className="store-shot-title-line store-shot-title-emphasis">マップが進む</span></>,
+    detail: "終えるたび 次の場所へ",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
     label: "トレーニング中",
-    title: <><span className="store-shot-title-line">カメラが、</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える。</span></>,
-    detail: "動きを捉えて、自動で数える。",
+    title: <><span className="store-shot-title-line">カメラが</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える</span></>,
+    detail: "動きを捉えて 自動で数える",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
     label: "トレーニング",
-    title: <><span className="store-shot-title-line store-shot-title-emphasis">好きな運動から、</span><span className="store-shot-title-line">始められる。</span></>,
-    detail: "39種目から、自由に選べる。",
+    title: <><span className="store-shot-title-line store-shot-title-emphasis">好きな運動から</span><span className="store-shot-title-line">始められる</span></>,
+    detail: "39種目から 自由に選べる",
     src: "/app-screens/ja/real-training.png",
   },
   league: {
     label: "リーグ",
-    title: <><span className="store-shot-title-line">動いた分だけ、</span><span className="store-shot-title-line store-shot-title-emphasis">順位が変わる。</span></>,
-    detail: "毎週のFPで、仲間と競える。",
+    title: <><span className="store-shot-title-line">動いた分だけ</span><span className="store-shot-title-line store-shot-title-emphasis">順位が変わる</span></>,
+    detail: "毎週のFPで 仲間と競う",
     src: "/app-screens/ja/real-league.png",
   },
   coach: {
     label: "Pro・コーチ",
-    title: <><span className="store-shot-title-line">今日の運動を、</span><span className="store-shot-title-line store-shot-title-emphasis">コーチに任せる。</span></>,
-    detail: "Proなら、次の運動を提案。",
+    title: <><span className="store-shot-title-line">今日の運動を</span><span className="store-shot-title-line store-shot-title-emphasis">コーチに任せる</span></>,
+    detail: "Proなら 次の運動を提案",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
   },
   profile: {
     label: "プロフィール",
-    title: <><span className="store-shot-title-line store-shot-title-emphasis">続けた記録が、</span><span className="store-shot-title-line">残っていく。</span></>,
-    detail: "続けた日数やレベルを記録。",
+    title: <><span className="store-shot-title-line store-shot-title-emphasis">続けた記録が</span><span className="store-shot-title-line">残っていく</span></>,
+    detail: "続けた日数やレベルを記録",
     src: "/app-screens/ja/real-profile.png",
   },
 } as const;
