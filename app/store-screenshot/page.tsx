@@ -9,13 +9,13 @@ const scenes = {
   home: {
     label: "ホーム",
     title: <><span className="store-shot-title-line">動くと</span><span className="store-shot-title-line store-shot-title-emphasis">マップが進む</span></>,
-    detail: "終えるたび 次の場所へ",
+    detail: "1回約8分 終えるたび 次の場所へ",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
     label: "トレーニング中",
     title: <><span className="store-shot-title-line">カメラが</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える</span></>,
-    detail: "動きを捉えて 自動で数える",
+    detail: "スマホを置くだけで 自動カウント",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
@@ -26,9 +26,15 @@ const scenes = {
   },
   league: {
     label: "リーグ",
-    title: <><span className="store-shot-title-line">動いた分だけ</span><span className="store-shot-title-line store-shot-title-emphasis">順位が変わる</span></>,
-    detail: "毎週のFPで 仲間と競う",
+    title: <><span className="store-shot-title-line">今週は何位まで</span><span className="store-shot-title-line store-shot-title-emphasis">いける？</span></>,
+    detail: "毎週の運動量で 仲間と競う",
     src: "/app-screens/ja/real-league.png",
+  },
+  profile: {
+    label: "プロフィール",
+    title: <><span className="store-shot-title-line">続けるほど</span><span className="store-shot-title-line store-shot-title-emphasis">成長が見えてくる</span></>,
+    detail: "レベルも連続記録も積み上がる",
+    src: "/app-screens/ja/real-profile.png",
   },
   coach: {
     label: "Pro・コーチ",
@@ -36,12 +42,6 @@ const scenes = {
     detail: "Proなら 次の運動を提案",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
-  },
-  profile: {
-    label: "プロフィール",
-    title: <><span className="store-shot-title-line store-shot-title-emphasis">続けた記録が</span><span className="store-shot-title-line">残っていく</span></>,
-    detail: "続けた日数やレベルを記録",
-    src: "/app-screens/ja/real-profile.png",
   },
 } as const;
 
