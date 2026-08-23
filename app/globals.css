@@ -1166,8 +1166,8 @@ img { display: block; max-width: 100%; }
 .store-shot-gallery-card strong { font-size: 17px; font-weight: 950; }
 .store-shot-gallery-card span { color: #687178; font-size: 13px; font-weight: 850; }
 
-/* The landing page shows the app's upper 12/13 so the real UI reads faster. */
-.fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2337; }
+/* The landing page shows the app's upper 13/14 so the real UI reads faster. */
+.fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2350; }
 .fitlet-new-site .fitlet-new-device-screen img { object-fit: cover; object-position: top center; }
 
 @media (prefers-reduced-motion: reduce) {
