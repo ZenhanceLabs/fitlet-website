@@ -5,32 +5,38 @@ import { publicAsset } from "../lib/publicAsset";
 
 const scenes = {
   home: {
+    label: "ホーム",
     title: <>動くと、<br /><span>マップが進む。</span></>,
     detail: "終えるたび、次の場所へ。",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
+    label: "トレーニング中",
     title: <>カメラが、<br /><span>回数を数える。</span></>,
     detail: "動きを捉えて、自動でカウント。",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
+    label: "トレーニング",
     title: <><span>好きな運動から、</span><br />始められる。</>,
     detail: "39種目から、自由に選べる。",
     src: "/app-screens/ja/real-training.png",
   },
   league: {
+    label: "リーグ",
     title: <>動いた分だけ、<br /><span>順位が変わる。</span></>,
     detail: "毎週のFPで、仲間と競える。",
     src: "/app-screens/ja/real-league.png",
   },
   coach: {
+    label: "Pro・コーチ",
     title: <>今日のメニューを、<br /><span>コーチに任せる。</span></>,
     detail: "Proなら、次の運動を提案。",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
   },
   profile: {
+    label: "プロフィール",
     title: <><span>続けた記録</span>が、<br />残っていく。</>,
     detail: "続けた日数やレベルを記録。",
     src: "/app-screens/ja/real-profile.png",
@@ -43,14 +49,7 @@ function isSceneKey(value: string | null): value is SceneKey {
   return value !== null && value in scenes;
 }
 
-export default function StoreScreenshotPage() {
-  const requestedScene = typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("scene");
-  const sceneKey: SceneKey = isSceneKey(requestedScene) ? requestedScene : "home";
-
-  useEffect(() => {
-    document.documentElement.classList.add("store-shot-ready");
-  }, []);
-
+function StoreShotCanvas({ sceneKey }: { sceneKey: SceneKey }) {
   const scene = scenes[sceneKey];
 
   return (
@@ -75,4 +74,41 @@ export default function StoreScreenshotPage() {
       </figure>
     </main>
   );
+}
+
+function StoreShotGallery() {
+  return (
+    <main className="store-shot-gallery">
+      <header className="store-shot-gallery-head">
+        <img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" />
+        <div>
+          <p>App Store screenshots</p>
+          <h1>Fitletのストア用画像</h1>
+          <span>6枚の画像を個別に確認できます。</span>
+        </div>
+      </header>
+      <div className="store-shot-gallery-grid">
+        {(Object.entries(scenes) as Array<[SceneKey, (typeof scenes)[SceneKey]]>).map(([key, scene]) => (
+          <a className="store-shot-gallery-card" href={publicAsset(`/store-screenshot/?scene=${key}&locale=ja`)} key={key}>
+            <img src={publicAsset(`/store/ja/fitlet-${key}-ja.png`)} alt={`${scene.label}のストア用画像`} />
+            <div>
+              <strong>{scene.label}</strong>
+              <span>開く ↗</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+export default function StoreScreenshotPage() {
+  const requestedScene = typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("scene");
+  const sceneKey: SceneKey | null = isSceneKey(requestedScene) ? requestedScene : null;
+
+  useEffect(() => {
+    document.documentElement.classList.add("store-shot-ready");
+  }, []);
+
+  return sceneKey ? <StoreShotCanvas sceneKey={sceneKey} /> : <StoreShotGallery />;
 }

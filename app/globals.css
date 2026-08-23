@@ -1144,6 +1144,43 @@ img { display: block; max-width: 100%; }
 .store-shot-coach .store-shot-copy p { color: #c9ced3; }
 .store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.1) inset; }
 
+.store-shot-gallery {
+  min-height: 100vh;
+  padding: 76px 48px 110px;
+  background: #f5f6f3;
+  color: #111318;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+.store-shot-gallery-head,
+.store-shot-gallery-grid { width: min(1180px, 100%); margin-inline: auto; }
+.store-shot-gallery-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+.store-shot-gallery-head > img { width: 220px; max-width: none; }
+.store-shot-gallery-head p { margin: 0 0 14px; color: #7a8286; font-size: 13px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.store-shot-gallery-head h1 { margin: 0; font-size: clamp(42px, 6vw, 78px); font-weight: 950; letter-spacing: -.1em; line-height: .98; }
+.store-shot-gallery-head span { display: block; margin-top: 20px; color: #687178; font-size: 15px; font-weight: 700; }
+.store-shot-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 66px; }
+.store-shot-gallery-card { display: block; overflow: hidden; border-radius: 30px; background: #fff; box-shadow: 0 16px 36px rgba(30,35,39,.08); transition: transform .2s ease, box-shadow .2s ease; }
+.store-shot-gallery-card:hover { box-shadow: 0 22px 44px rgba(30,35,39,.14); transform: translateY(-5px); }
+.store-shot-gallery-card > img { display: block; width: 100%; height: auto; }
+.store-shot-gallery-card > div { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px 20px; }
+.store-shot-gallery-card strong { font-size: 17px; font-weight: 950; }
+.store-shot-gallery-card span { color: #687178; font-size: 13px; font-weight: 850; }
+
+/* The landing page shows the app's upper 12/13 so the real UI reads faster. */
+.fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2337; }
+.fitlet-new-site .fitlet-new-device-screen img { object-fit: cover; object-position: top center; }
+
 @media (prefers-reduced-motion: reduce) {
   .store-shot { scroll-behavior: auto; }
+}
+
+@media (max-width: 900px) {
+  .store-shot-gallery { padding: 54px 24px 80px; }
+  .store-shot-gallery-head { display: block; }
+  .store-shot-gallery-head > img { width: 190px; }
+  .store-shot-gallery-head > div { margin-top: 58px; }
+  .store-shot-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 46px; }
+}
+@media (max-width: 560px) {
+  .store-shot-gallery-grid { grid-template-columns: 1fr; }
 }
