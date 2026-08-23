@@ -1169,6 +1169,23 @@ img { display: block; max-width: 100%; }
 .fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2374; }
 .fitlet-new-site .fitlet-new-device-screen img { object-fit: cover; object-position: top center; }
 
+/* Landing screen cards keep their explanatory copy readable at every width. */
+.fitlet-new-site .fitlet-new-screen-copy h3 {
+  font-size: clamp(36px, 4.2vw, 54px);
+}
+.fitlet-new-site .fitlet-new-screen-copy > p:last-child {
+  max-width: 520px;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.8;
+}
+.fitlet-new-site .fitlet-new-screen-device { width: min(100%, 340px); }
+
+@media (max-width: 720px) {
+  .fitlet-new-site .fitlet-new-screen-copy h3 { font-size: 40px; }
+  .fitlet-new-site .fitlet-new-screen-copy > p:last-child { font-size: 17px; }
+  .fitlet-new-site .fitlet-new-screen-device { width: min(100%, 300px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .store-shot { scroll-behavior: auto; }
 }

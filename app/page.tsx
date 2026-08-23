@@ -93,7 +93,7 @@ export default function Home() {
             className="fitlet-new-screen-session"
             label="トレーニング中"
             title="カメラが、回数を数える。"
-            body="スクワット中のフォームを見守り、動きに合わせてカウントします。"
+            body="カメラが動きを捉えて、回数を自動で数えます。"
             src={publicAsset("/app-screens/ja/real-session.png")}
             alt="Fitletトレーニング中。実写のスクワットと青いボーン表示"
           />
