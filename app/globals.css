@@ -1032,18 +1032,14 @@ img { display: block; max-width: 100%; }
   width: 320px;
 }
 .store-shot-brand img { display: block; width: 100%; max-width: none; height: auto; }
-.store-shot-pro-badge {
+.store-shot-pro-logo {
   position: absolute;
   z-index: 8;
   top: 100px;
   right: 100px;
-  border-radius: 999px;
-  padding: 20px 30px 18px;
-  background: #fff;
-  color: #111318;
-  font-size: 30px;
-  font-weight: 950;
-  letter-spacing: .08em;
+  display: block;
+  width: 250px;
+  height: auto;
 }
 .store-shot-copy {
   position: absolute;
@@ -1056,12 +1052,16 @@ img { display: block; max-width: 100%; }
 .store-shot-copy h1 {
   max-width: 1180px;
   margin: 0;
-  font-size: 164px;
+  font-size: 154px;
   font-weight: 950;
-  letter-spacing: -.105em;
+  letter-spacing: -.09em;
   line-height: 1.02;
 }
-.store-shot-copy h1 span {
+.store-shot-title-line {
+  display: block;
+  white-space: nowrap;
+}
+.store-shot-title-emphasis {
   white-space: nowrap;
   text-decoration-line: underline;
   text-decoration-thickness: 11px;
@@ -1070,11 +1070,11 @@ img { display: block; max-width: 100%; }
 }
 .store-shot-copy p {
   max-width: 1060px;
-  margin: 42px 0 0;
+  margin: 48px 0 0;
   color: rgba(17,19,24,.76);
-  font-size: 45px;
+  font-size: 58px;
   font-weight: 780;
-  letter-spacing: -.045em;
+  letter-spacing: -.055em;
   line-height: 1.45;
   margin-right: auto;
   margin-left: auto;
@@ -1134,13 +1134,15 @@ img { display: block; max-width: 100%; }
 .store-shot-training { --store-bg: #eef6d6; --store-accent: #75bd4d; }
 .store-shot-league { --store-bg: #fff9e8; --store-accent: #d99446; }
 .store-shot-profile { --store-bg: #f4f3ef; --store-accent: #fa5b91; }
+.store-shot-training .store-shot-copy h1,
+.store-shot-coach .store-shot-copy h1 { font-size: 128px; }
+.store-shot-profile .store-shot-copy h1 { font-size: 140px; }
 .store-shot-coach {
   --store-bg: #10131b;
   --store-accent: #f0c25d;
   --store-ink: #fff;
 }
 .store-shot-coach .store-shot-brand { filter: brightness(0) invert(1); }
-.store-shot-coach .store-shot-copy h1 { font-size: 140px; }
 .store-shot-coach .store-shot-copy p { color: #c9ced3; }
 .store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.1) inset; }
 
@@ -1166,8 +1168,8 @@ img { display: block; max-width: 100%; }
 .store-shot-gallery-card strong { font-size: 17px; font-weight: 950; }
 .store-shot-gallery-card span { color: #687178; font-size: 13px; font-weight: 850; }
 
-/* The landing page shows the app's upper 13/14 so the real UI reads faster. */
-.fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2350; }
+/* The landing page shows the app's upper 15/16 so the real UI reads faster. */
+.fitlet-new-site .fitlet-new-device { aspect-ratio: 1170 / 2374; }
 .fitlet-new-site .fitlet-new-device-screen img { object-fit: cover; object-position: top center; }
 
 @media (prefers-reduced-motion: reduce) {

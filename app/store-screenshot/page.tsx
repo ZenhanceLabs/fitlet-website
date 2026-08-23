@@ -6,38 +6,38 @@ import { publicAsset } from "../lib/publicAsset";
 const scenes = {
   home: {
     label: "ホーム",
-    title: <>動くと、<br /><span>マップが進む。</span></>,
+    title: <><span className="store-shot-title-line">動くと、</span><span className="store-shot-title-line store-shot-title-emphasis">マップが進む。</span></>,
     detail: "終えるたび、次の場所へ。",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
     label: "トレーニング中",
-    title: <>カメラが、<br /><span>回数を数える。</span></>,
+    title: <><span className="store-shot-title-line">カメラが、</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える。</span></>,
     detail: "動きを捉えて、自動でカウント。",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
     label: "トレーニング",
-    title: <><span>好きな運動から、</span><br />始められる。</>,
+    title: <><span className="store-shot-title-line store-shot-title-emphasis">好きな運動から、</span><span className="store-shot-title-line">始められる。</span></>,
     detail: "39種目から、自由に選べる。",
     src: "/app-screens/ja/real-training.png",
   },
   league: {
     label: "リーグ",
-    title: <>動いた分だけ、<br /><span>順位が変わる。</span></>,
+    title: <><span className="store-shot-title-line">動いた分だけ、</span><span className="store-shot-title-line store-shot-title-emphasis">順位が変わる。</span></>,
     detail: "毎週のFPで、仲間と競える。",
     src: "/app-screens/ja/real-league.png",
   },
   coach: {
     label: "Pro・コーチ",
-    title: <>今日のメニューを、<br /><span>コーチに任せる。</span></>,
+    title: <><span className="store-shot-title-line">今日のメニューを、</span><span className="store-shot-title-line store-shot-title-emphasis">コーチに任せる。</span></>,
     detail: "Proなら、次の運動を提案。",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
   },
   profile: {
     label: "プロフィール",
-    title: <><span>続けた記録</span>が、<br />残っていく。</>,
+    title: <><span className="store-shot-title-line store-shot-title-emphasis">続けた記録が、</span><span className="store-shot-title-line">残っていく。</span></>,
     detail: "続けた日数やレベルを記録。",
     src: "/app-screens/ja/real-profile.png",
   },
@@ -57,7 +57,7 @@ function StoreShotCanvas({ sceneKey }: { sceneKey: SceneKey }) {
       <div className="store-shot-brand">
         <img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" />
       </div>
-      {scene.pro ? <div className="store-shot-pro-badge">PRO</div> : null}
+      {scene.pro ? <img className="store-shot-pro-logo" src={publicAsset("/brand/fitlet-pro-logo.svg")} alt="Fitlet Pro" /> : null}
       <div className="store-shot-copy">
         <h1>{scene.title}</h1>
         <p>{scene.detail}</p>
