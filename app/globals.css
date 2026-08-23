@@ -1072,9 +1072,9 @@ img { display: block; max-width: 100%; }
   max-width: 1060px;
   margin: 48px 0 0;
   color: rgba(17,19,24,.76);
-  font-size: 68px;
+  font-size: 80px;
   font-weight: 780;
-  letter-spacing: -.055em;
+  letter-spacing: -.07em;
   line-height: 1.45;
   margin-right: auto;
   margin-left: auto;
@@ -1135,13 +1135,12 @@ img { display: block; max-width: 100%; }
 .store-shot-league { --store-bg: #fff9e8; --store-accent: #d99446; }
 .store-shot-profile { --store-bg: #f4f3ef; --store-accent: #fa5b91; }
 .store-shot-coach {
-  --store-bg: #10131b;
+  --store-bg: #f4f1e9;
   --store-accent: #f0c25d;
-  --store-ink: #fff;
+  --store-ink: #111318;
 }
-.store-shot-coach .store-shot-brand { filter: brightness(0) invert(1); }
-.store-shot-coach .store-shot-copy p { color: #c9ced3; }
-.store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.1) inset; }
+.store-shot-coach .store-shot-copy p { color: rgba(17,19,24,.76); }
+.store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(17,19,24,.2), 0 2px 0 rgba(255,255,255,.1) inset; }
 
 .store-shot-gallery {
   min-height: 100vh;

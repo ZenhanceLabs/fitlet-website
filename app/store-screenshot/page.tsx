@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-08-23-2";
+const storeImageVersion = "2026-08-23-3";
 
 const scenes = {
   home: {
@@ -15,7 +15,7 @@ const scenes = {
   session: {
     label: "トレーニング中",
     title: <><span className="store-shot-title-line">カメラが、</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える。</span></>,
-    detail: "動きを捉えて、自動でカウント。",
+    detail: "動きを捉えて、自動で数える。",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
