@@ -3,24 +3,24 @@
 import { useEffect } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-08-23-5";
+const storeImageVersion = "2026-08-23-6";
 
 const scenes = {
   home: {
     label: "ホーム",
     title: <><span className="store-shot-title-line">動くと</span><span className="store-shot-title-line store-shot-title-emphasis">マップが進む</span></>,
-    detail: "1回約8分 終えるたび 次の場所へ",
+    detail: "1回約8分で 次の場所へ",
     src: "/app-screens/ja/real-home.png",
   },
   session: {
     label: "トレーニング中",
     title: <><span className="store-shot-title-line">カメラが</span><span className="store-shot-title-line store-shot-title-emphasis">回数を数える</span></>,
-    detail: "スマホを置くだけで 自動カウント",
+    detail: "スマホを置くだけ 自動カウント",
     src: "/app-screens/ja/real-session.png",
   },
   training: {
     label: "トレーニング",
-    title: <><span className="store-shot-title-line store-shot-title-emphasis">好きな運動から</span><span className="store-shot-title-line">始められる</span></>,
+    title: <><span className="store-shot-title-line">好きな運動から</span><span className="store-shot-title-line store-shot-title-emphasis">始められる</span></>,
     detail: "39種目から 自由に選べる",
     src: "/app-screens/ja/real-training.png",
   },
@@ -33,7 +33,7 @@ const scenes = {
   profile: {
     label: "プロフィール",
     title: <><span className="store-shot-title-line">続けるほど</span><span className="store-shot-title-line store-shot-title-emphasis">成長が見えてくる</span></>,
-    detail: "レベルも連続記録も積み上がる",
+    detail: "レベルと記録が積み上がる",
     src: "/app-screens/ja/real-profile.png",
   },
   coach: {

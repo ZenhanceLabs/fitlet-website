@@ -1069,8 +1069,9 @@ img { display: block; max-width: 100%; }
   text-underline-offset: 14px;
 }
 .store-shot-copy p {
-  max-width: 1060px;
+  max-width: none;
   margin: 48px 0 0;
+  padding-inline: 20px;
   color: rgba(17,19,24,.76);
   font-size: 80px;
   font-weight: 780;
@@ -1078,6 +1079,7 @@ img { display: block; max-width: 100%; }
   line-height: 1.45;
   margin-right: auto;
   margin-left: auto;
+  white-space: nowrap;
 }
 .store-shot-phone {
   position: absolute;
