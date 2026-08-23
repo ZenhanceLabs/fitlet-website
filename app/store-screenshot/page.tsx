@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
+const storeImageVersion = "2026-08-23-2";
+
 const scenes = {
   home: {
     label: "ホーム",
@@ -30,7 +32,7 @@ const scenes = {
   },
   coach: {
     label: "Pro・コーチ",
-    title: <><span className="store-shot-title-line">今日のメニューを、</span><span className="store-shot-title-line store-shot-title-emphasis">コーチに任せる。</span></>,
+    title: <><span className="store-shot-title-line">今日の運動を、</span><span className="store-shot-title-line store-shot-title-emphasis">コーチに任せる。</span></>,
     detail: "Proなら、次の運動を提案。",
     src: "/app-screens/ja/real-coach.png",
     pro: true,
@@ -90,7 +92,7 @@ function StoreShotGallery() {
       <div className="store-shot-gallery-grid">
         {(Object.entries(scenes) as Array<[SceneKey, (typeof scenes)[SceneKey]]>).map(([key, scene]) => (
           <a className="store-shot-gallery-card" href={publicAsset(`/store-screenshot/?scene=${key}&locale=ja`)} key={key}>
-            <img src={publicAsset(`/store/ja/fitlet-${key}-ja.png`)} alt={`${scene.label}のストア用画像`} />
+            <img src={publicAsset(`/store/ja/fitlet-${key}-ja.png?v=${storeImageVersion}`)} alt={`${scene.label}のストア用画像`} />
             <div>
               <strong>{scene.label}</strong>
               <span>開く ↗</span>

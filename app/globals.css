@@ -1052,7 +1052,7 @@ img { display: block; max-width: 100%; }
 .store-shot-copy h1 {
   max-width: 1180px;
   margin: 0;
-  font-size: 154px;
+  font-size: 140px;
   font-weight: 950;
   letter-spacing: -.09em;
   line-height: 1.02;
@@ -1072,7 +1072,7 @@ img { display: block; max-width: 100%; }
   max-width: 1060px;
   margin: 48px 0 0;
   color: rgba(17,19,24,.76);
-  font-size: 58px;
+  font-size: 68px;
   font-weight: 780;
   letter-spacing: -.055em;
   line-height: 1.45;
@@ -1134,9 +1134,6 @@ img { display: block; max-width: 100%; }
 .store-shot-training { --store-bg: #eef6d6; --store-accent: #75bd4d; }
 .store-shot-league { --store-bg: #fff9e8; --store-accent: #d99446; }
 .store-shot-profile { --store-bg: #f4f3ef; --store-accent: #fa5b91; }
-.store-shot-training .store-shot-copy h1,
-.store-shot-coach .store-shot-copy h1 { font-size: 128px; }
-.store-shot-profile .store-shot-copy h1 { font-size: 140px; }
 .store-shot-coach {
   --store-bg: #10131b;
   --store-accent: #f0c25d;
