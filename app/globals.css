@@ -762,7 +762,8 @@ img { display: block; max-width: 100%; }
 .fitlet-new-logo { display: block; width: 118px; }
 .fitlet-new-logo img { display: block; width: 100%; }
 .fitlet-new-nav nav, .fitlet-new-footer nav { display: flex; align-items: center; gap: 28px; color: var(--new-ink); font-size: 14px; font-weight: 900; }
-.fitlet-new-nav nav a:not(.fitlet-new-nav-cta):hover, .fitlet-new-footer nav a:hover { opacity: .58; }
+.fitlet-new-nav nav a:not(.fitlet-new-nav-cta):hover, .fitlet-new-nav nav .fitlet-new-language-toggle:hover, .fitlet-new-footer nav a:hover { opacity: .58; }
+.fitlet-new-language-toggle { border: 0; padding: 6px 0; background: transparent; color: inherit; font-size: inherit; font-weight: inherit; }
 .fitlet-new-nav-cta { display: inline-flex; min-height: 42px; align-items: center; border-radius: 999px; padding: 0 18px; background: var(--new-ink); color: #fff; }
 .fitlet-new-label { margin-bottom: 0; color: var(--new-muted); font-size: 12px; font-weight: 900; letter-spacing: .12em; }
 .fitlet-new-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, .72fr); gap: clamp(50px, 10vw, 150px); width: min(1180px, calc(100% - 72px)); align-items: center; margin-inline: auto; padding-block: 92px 132px; }
@@ -919,6 +920,15 @@ img { display: block; max-width: 100%; }
 .fitlet-new-device-side-button-top { left: -6px; }
 .fitlet-new-device-side-button-middle { right: -6px; }
 
+/* English copy needs a lighter tracking treatment than the Japanese display type. */
+html[lang="en"] .fitlet-new-site h1,
+html[lang="en"] .fitlet-new-site h2,
+html[lang="en"] .fitlet-new-site h3 { letter-spacing: -.045em; }
+html[lang="en"] .fitlet-new-site .fitlet-new-label { letter-spacing: .08em; }
+html[lang="en"] .legal-hero h1,
+html[lang="en"] .legal-body h2,
+html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
+
 .legal-header {
   width: min(1180px, calc(100% - 72px));
   min-height: 86px;
@@ -944,6 +954,7 @@ img { display: block; max-width: 100%; }
 .fitlet-new-friend-code span { color: var(--new-muted); font-size: 12px; font-weight: 900; letter-spacing: .12em; }
 .fitlet-new-friend-code strong { color: var(--new-ink); font-size: 34px; font-weight: 950; letter-spacing: .12em; }
 .fitlet-new-friend-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
+.fitlet-new-friend-launch { margin: 16px 0 0; color: var(--new-ink); font-size: 14px; font-weight: 850; }
 .fitlet-new-button-light { border: 1px solid var(--new-line); color: var(--new-ink); }
 .fitlet-new-friend-note { margin: 22px 0 0; color: var(--new-muted); font-size: 13px; font-weight: 700; }
 
@@ -1130,7 +1141,6 @@ img { display: block; max-width: 100%; }
 }
 .store-shot-side-button-left-one { top: 31%; left: -23px; height: 5.3%; }
 .store-shot-side-button-left-two { top: 40%; left: -23px; height: 5.3%; }
-.store-shot-side-button-left-three { top: 49%; left: -23px; height: 5.3%; }
 .store-shot-side-button-right { top: 37%; right: -23px; height: 12%; border-radius: 0 7px 7px 0; }
 .store-shot-session { --store-bg: #fff0e8; --store-accent: #22c9df; }
 .store-shot-training { --store-bg: #eef6d6; --store-accent: #75bd4d; }

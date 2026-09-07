@@ -1,4 +1,7 @@
+"use client";
+
 import { LegalPage } from "./SiteChrome";
+import { useLocale } from "../lib/locale";
 import { sitePath } from "../lib/sitePath";
 
 const UPDATED = "2026年8月19日";
@@ -6,7 +9,7 @@ const SUPPORT_EMAIL = "zenhancelabs@gmail.com";
 
 type LegalMode = "hub" | "privacy" | "terms";
 
-export function LegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
+function JapaneseLegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
   const isPrivacy = mode === "privacy";
   const isTerms = mode === "terms";
   const current = mode === "privacy" ? "privacy" : mode === "terms" ? "terms" : "legal";
@@ -172,6 +175,140 @@ export function LegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
       </section>
     </LegalPage>
   );
+}
+
+function EnglishLegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
+  const isPrivacy = mode === "privacy";
+  const isTerms = mode === "terms";
+  const current = isPrivacy ? "privacy" : isTerms ? "terms" : "legal";
+  const title = isPrivacy ? "Privacy Policy" : isTerms ? "Terms of Service" : "Privacy & Terms";
+  const intro = isPrivacy
+    ? "Learn what information Fitlet uses, why we use it, and how we manage it."
+    : isTerms
+      ? "The terms that apply when you use Fitlet."
+      : "How Fitlet handles data and the terms for using the service.";
+  const toc = isPrivacy
+    ? [{ href: "#privacy", label: "Privacy Policy" }, { href: "/terms", label: "Terms of Service" }, { href: "#contact", label: "Contact" }]
+    : isTerms
+      ? [{ href: "#terms", label: "Terms" }, { href: "/privacy", label: "Privacy Policy" }, { href: "#contact", label: "Contact" }]
+      : [{ href: "#privacy", label: "Privacy Policy" }, { href: "#terms", label: "Terms of Service" }, { href: "#contact", label: "Contact" }];
+
+  return (
+    <LegalPage current={current} eyebrow="Legal" title={title} intro={intro} updated="August 19, 2026" toc={toc}>
+      {!isTerms && (<section id="privacy">
+        <p className="legal-kicker">Privacy</p>
+        <h2>Privacy Policy</h2>
+        <p>To help you use Fitlet with confidence, this policy explains what information we use, why we use it, and who we share it with. Fitlet’s operator (“we,” “us,” or “the operator”) handles information in accordance with applicable privacy laws and regulations.</p>
+
+        <h3>1. Information we collect</h3>
+        <p>Depending on the features you use, we collect or store the following information on your device or through the service.</p>
+        <ul>
+          <li><strong>App progress and settings:</strong> Display name, profile, headband customization, level, XP, FP, map progress, streaks, achievements, workout history, set settings, and audio, notification, and workout preferences.</li>
+          <li><strong>Workout records:</strong> Exercise type, reps, duration, completion status, whether the camera was used, evaluation results, and post-workout feedback.</li>
+          <li><strong>Camera and pose data:</strong> For camera-based workouts, pose information is processed from your device camera to count reps and evaluate movement. Camera footage itself is not saved or sent to our servers. Your history may include whether the camera was used and the resulting workout records.</li>
+          <li><strong>Steps and motion data:</strong> If you grant permission, Fitlet reads step counts from Pedometer on iOS or Health Connect on Android and uses them for XP or activity records. We do not collect location data.</li>
+          <li><strong>Photo library:</strong> When you use a feature that saves a profile card or similar image to your device’s photo library, Fitlet uses the operating system’s photo permission. This is not a feature for uploading your photos to our servers.</li>
+          <li><strong>Account information:</strong> An anonymous authentication identifier, or the identifiers needed to link an Apple or Google account selected by you. This may include information provided by the authentication service, such as Apple’s private relay email address.</li>
+          <li><strong>Friends and league data:</strong> Friend codes, display names, profile cards you choose to make public, level, activity status, weekly summaries, league participation, rankings, and FP.</li>
+          <li><strong>Purchase information:</strong> Store and RevenueCat identifiers and entitlement information used to verify Pro purchases, restores, and subscription status. We do not receive your credit card number.</li>
+          <li><strong>Contact information:</strong> Information you send through email, X, or a form, such as your email address, device and operating system details, message, and attachments.</li>
+          <li><strong>Website usage information:</strong> When you visit this website, the hosting provider’s logs may record information normally sent by a browser, such as your IP address, timestamp, and user agent. This website does not use advertising trackers or an analytics SDK.</li>
+        </ul>
+
+        <h3>2. How we use information</h3>
+        <ul>
+          <li>To provide the map, workouts, camera-based rep counting, records, audio, and illustrated guidance</li>
+          <li>To adjust menus and displays based on your goals, fitness level, movements you want to avoid, and past records</li>
+          <li>To provide features you choose, such as friends, leagues, profiles, and weekly summaries</li>
+          <li>To verify Apple or Google purchases, restore purchases, provide Pro features, and prevent misuse</li>
+          <li>To investigate bugs, respond to questions, improve safety and quality, and comply with laws</li>
+          <li>To send notifications when you have given consent or device permission</li>
+        </ul>
+
+        <h3>3. Permissions and your choices</h3>
+        <p>We request camera, steps and motion, Health Connect, and notification permissions only when you use a feature that needs them. If you deny or later disable a permission, features that do not require it remain available. You can change permissions in your device settings. We do not use camera footage or information derived from HealthKit and similar services for advertising, marketing, or data-broker purposes.</p>
+
+        <h3>4. Sharing and service providers</h3>
+        <p>Unless required by law, authorized by you, or necessary for the following providers to deliver the service, we do not disclose personal information to third parties. We require providers to apply appropriate security measures under their contracts, terms, privacy policies, or other applicable arrangements.</p>
+        <ul>
+          <li><strong>Firebase:</strong> Anonymous authentication, Apple and Google account linking, cloud synchronization of authenticated users’ progress, cloud processing for friends and leagues, and App Check.</li>
+          <li><strong>RevenueCat:</strong> Management of Pro purchase and subscription status. Apple App Store or Google Play processes the purchase itself.</li>
+          <li><strong>Apple and Google:</strong> App distribution, authentication, payments, subscriptions, and operating-system functions for camera, steps, motion, and notifications.</li>
+          <li><strong>Google Mobile Ads:</strong> In versions that display ads, device information, IP address, advertising identifiers, and other information needed for ad delivery or measurement may be handled according to the SDK’s specifications. We respect operating-system and SDK settings for personalized advertising and tracking.</li>
+          <li><strong>Contact services:</strong> Google Forms, Gmail, and X. They process information under their own terms and policies only when you choose to submit information through those services.</li>
+          <li><strong>Hosting provider:</strong> Website delivery and ordinary server log management.</li>
+        </ul>
+        <p>Some of these providers may process information outside Japan. Their latest terms and privacy information also apply to storage locations, subcontractors, and international transfers.</p>
+
+        <h3>5. What friends can see</h3>
+        <p>For friend features, your profile card, level and XP, whether you trained today, and your weekly summary may be shown to approved friends depending on your sharing settings. You can change the sharing range in Settings. Do not enter personal information such as your address, phone number, or email address in a friend code or display name.</p>
+
+        <h3>6. Retention and deletion</h3>
+        <p>Device data is stored for as long as the app needs it or until you reset or delete it. Cloud progress and friend information associated with a linked account are stored for as long as needed to provide the feature, until account deletion, or until we process a deletion request. Records that must be retained by law, backups, and information needed for dispute handling may not be deleted immediately.</p>
+        <p>You can delete a linked account from Account deletion in the app settings. Anonymous, device-only data is removed by resetting the app or deleting it. You can also submit a deletion request through the contact channels below.</p>
+
+        <h3>7. Access, correction, and other rights</h3>
+        <p>Subject to applicable law, you may request notice of the purposes of use, access to personal data we hold, correction, addition, deletion, restriction of use, erasure, or cessation of provision to third parties. We may ask for information needed to verify your identity. If we cannot comply because of a legal exception, we will explain the reason.</p>
+
+        <h3>8. Security and children</h3>
+        <p>We take reasonable security measures appropriate to the nature of the information, including access controls, protected communications, limited permissions, and input validation. However, no internet communication or device can be made completely secure. Minors should use Fitlet with a parent or guardian’s consent, and guardians should review paid purchases and shared information.</p>
+
+        <h3>9. Changes</h3>
+        <p>We may update this policy in response to changes in law, features, providers, or our operations. We will clearly announce important changes on this website or in the app and obtain additional consent when required.</p>
+      </section>)}
+
+      {!isPrivacy && (<section id="terms">
+        <p className="legal-kicker">Terms</p>
+        <h2>Fitlet Terms of Service</h2>
+        <p>These Terms of Service (“Terms”) set out the conditions for using the service provided by Fitlet’s operator. Please read these Terms and the Privacy Policy before using the service.</p>
+
+        <h3>Article 1. Application and consent</h3>
+        <p>By using the service, you agree to these Terms and the Privacy Policy. Minors must use the service with the consent of a parent or other legal guardian.</p>
+
+        <h3>Article 2. Service description</h3>
+        <p>The service provides short workouts, 29 exercises, set creation, camera-based movement evaluation and rep counting, step integration, maps, XP and FP, friends, weekly leagues, profiles, and Pro recommendations and analysis. Supported devices, regions, free and paid features, and available functions may change or end.</p>
+
+        <h3>Article 3. Health and safety</h3>
+        <p>Fitlet is an app intended to help you keep up a daily movement routine. It does not provide medical treatment or diagnosis. Stop exercising and consult a doctor as appropriate if you feel pain, dizziness, shortness of breath, or otherwise unwell.</p>
+
+        <h3>Article 4. Accounts, devices, and permissions</h3>
+        <p>The service may use anonymous authentication and can be linked to an Apple or Google account. You are responsible for managing your device and authentication information. You must not lend them to others, impersonate another person, or manipulate progress, FP, or rankings unfairly. If you deny permissions for the camera, steps, Health Connect, notifications, or other features, some functions may be unavailable.</p>
+
+        <h3>Article 5. Friends, display names, and prohibited conduct</h3>
+        <p>Display names, profiles, and friend codes must not infringe another person’s rights. You may not engage in illegal acts, threats, discrimination, harassment, impersonation, posting another person’s personal information, spam, reverse engineering, excessive load, unauthorized access, tampering with rewards or rankings, or other conduct that interferes with the service. We may remove content, restrict features, suspend use, or delete an account to the extent reasonably necessary.</p>
+
+        <h3>Article 6. Pro, purchases, cancellation, and refunds</h3>
+        <p>The price, term, renewal, free trial, and eligible features for Pro are governed by the purchase screen and the information shown by Apple App Store or Google Play. Payments, cancellation, refunds, and purchase restores follow each store’s procedures and rules. Auto-renewing subscriptions may renew unless you cancel them through the method specified by the applicable store.</p>
+
+        <h3>Article 7. Intellectual property</h3>
+        <p>Rights in the service name, logo, characters, UI, text, audio, programs, images, and other content belong to the operator or the relevant rights holder. Materials subject to third-party licenses are governed by their license notices. You may not copy, republish, sell, distribute, modify, or reuse content beyond what these Terms allow.</p>
+
+        <h3>Article 8. Suspension, changes, and termination</h3>
+        <p>We may suspend, change, or terminate all or part of the service when reasonably necessary for maintenance, outages, security, legal requirements, store decisions, or other operational reasons. We will give advance notice when reasonably possible, but this may not be possible in an emergency.</p>
+
+        <h3>Article 9. Disclaimers and liability</h3>
+        <p>We do not warrant that the service will meet a particular purpose, remain continuously available, preserve all data, or produce a particular exercise result. Except in cases caused by our willful misconduct or gross negligence, we are not liable for damages arising from the service to the extent permitted by law. Limitations that would be invalid under the Consumer Contract Act or other mandatory law do not apply.</p>
+
+        <h3>Article 10. Changes to these Terms</h3>
+        <p>We may change these Terms in light of changes in law, additions to the service, user interests, or other circumstances. We will announce the changes and their effective date on this website or in the app and obtain consent when required by law.</p>
+
+        <h3>Article 11. Governing law and jurisdiction</h3>
+        <p>These Terms are governed by the laws of Japan. Any dispute concerning the service will be submitted to the court with jurisdiction over the operator’s principal office as the court of first instance by exclusive agreement. This does not limit mandatory rights available to consumers.</p>
+      </section>)}
+
+      <section id="contact">
+        <p className="legal-kicker">Contact</p>
+        <h2>Contact us</h2>
+        <p>For requests to access or delete personal information, purchase questions, or app issues, please contact us through the support page.</p>
+        <div className="contact-card"><strong>Fitlet operator</strong><p>Zenhance Labs<br /><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p></div>
+      </section>
+    </LegalPage>
+  );
+}
+
+export function LegalHubPage({ mode = "hub" }: { mode?: LegalMode } = {}) {
+  const { locale } = useLocale();
+  return locale === "en" ? <EnglishLegalHubPage mode={mode} /> : <JapaneseLegalHubPage mode={mode} />;
 }
 
 export function PrivacyPolicyPage() {

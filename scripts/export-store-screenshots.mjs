@@ -4,10 +4,13 @@ import { spawn } from "node:child_process";
 import { chromium } from "playwright";
 
 const port = Number(process.env.FITLET_STORE_PORT ?? 8095);
-const outputRoot = resolve("public/store/ja");
+const locale = process.env.FITLET_STORE_LOCALE === "en" ? "en" : "ja";
+const outputRoot = resolve(`public/store/${locale}`);
 const basePath = "/fitlet-website";
 const scenes = ["home", "session", "training", "league", "coach", "profile"];
-const server = spawn("node", ["scripts/serve-static.mjs", "dist/client", String(port)], { stdio: "inherit" });
+const server = process.env.FITLET_STORE_SERVER === "dev"
+  ? spawn("node_modules/.bin/vinext", ["dev", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: "inherit" })
+  : spawn("node", ["scripts/serve-static.mjs", "dist/client", String(port)], { stdio: "inherit" });
 
 const stopServer = () => {
   if (!server.killed) server.kill("SIGTERM");
@@ -42,9 +45,14 @@ try {
   });
 
   for (const scene of scenes) {
-    await page.goto(`http://127.0.0.1:${port}/store-screenshot/?scene=${scene}&locale=ja`, { waitUntil: "networkidle" });
+    await page.goto(`http://127.0.0.1:${port}/store-screenshot/?scene=${scene}&locale=${locale}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction((expectedScene) => document.querySelector(".store-shot")?.getAttribute("data-scene") === expectedScene, scene);
-    await page.screenshot({ path: join(outputRoot, `fitlet-${scene}-ja.png`), fullPage: false });
+    await page.waitForFunction(() => {
+      const image = document.querySelector(".store-shot-screen img");
+      return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+    });
+    await page.evaluate(() => document.fonts?.ready);
+    await page.screenshot({ path: join(outputRoot, `fitlet-${scene}-${locale}.png`), fullPage: false });
   }
 
   await browser.close();

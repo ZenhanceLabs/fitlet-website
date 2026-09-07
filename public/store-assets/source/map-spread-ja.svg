@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2612" height="2796" viewBox="0 0 2612 2796">
+  <title>Fitlet ストア用ファーストビュー</title>
+  <desc>1枚のマップ画面を既存ストア画像と同じ端末枠に収め、強い角度で左右2枚のストア画像をまたがせた構成。左右の書き出し境界にはストア表示時の想定ガター32pxを設けている。</desc>
+  <defs>
+    <linearGradient id="phoneBody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#111318"/>
+      <stop offset="0.46" stop-color="#30343a"/>
+      <stop offset="1" stop-color="#111318"/>
+    </linearGradient>
+    <filter id="phoneShadow" x="-30%" y="-20%" width="170%" height="160%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="35" stdDeviation="30" flood-color="#111318" flood-opacity="0.24"/>
+    </filter>
+    <clipPath id="homeScreenClip">
+      <rect x="756" y="362" width="1068" height="2311.2615" rx="96"/>
+    </clipPath>
+  </defs>
+
+  <rect width="2612" height="2796" fill="#e4f5f4"/>
+
+  <image x="92" y="88" width="310" height="163" xlink:href="./fitlet_logo.svg" preserveAspectRatio="xMidYMid meet"/>
+
+  <g transform="translate(100 -64) rotate(-24 1290 1518)" filter="url(#phoneShadow)">
+    <rect x="730" y="336" width="1120" height="2364" rx="112" fill="url(#phoneBody)"/>
+    <rect x="756" y="362" width="1068" height="2311.2615" rx="96" fill="#ffffff"/>
+    <image x="756" y="362" width="1068" height="2311.2615" xlink:href="./screens/real-home.png" preserveAspectRatio="xMidYMid meet" clip-path="url(#homeScreenClip)"/>
+    <rect x="1124" y="397" width="331" height="78" rx="39" fill="#070809"/>
+    <rect x="707" y="1068" width="10" height="125" rx="5" fill="#2d3035"/>
+    <rect x="707" y="1404" width="10" height="125" rx="5" fill="#2d3035"/>
+    <rect x="1863" y="1209" width="10" height="284" rx="5" fill="#2d3035"/>
+  </g>
+
+  <g fill="#111318" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif" font-weight="950">
+    <g transform="translate(80 0)">
+      <text x="0" y="2460" font-size="140" letter-spacing="-12.6">ちょっと動くを</text>
+      <text x="0" y="2608" font-size="140" letter-spacing="-12.6">習慣に</text>
+    </g>
+    <g transform="translate(2522 0)" text-anchor="end">
+      <text x="0" y="320" font-size="140" letter-spacing="-12.6">動くと</text>
+      <text x="0" y="468" font-size="140" letter-spacing="-12.6">マップが進む</text>
+      <text x="50" y="630" font-size="80" font-weight="780" letter-spacing="-5.6">1回約8分で 次の場所へ</text>
+    </g>
+  </g>
+  <line x1="80" y1="2640" x2="475" y2="2640" stroke="#20b8c3" stroke-width="11" stroke-linecap="round"/>
+  <line x1="1772" y1="505" x2="2522" y2="505" stroke="#20b8c3" stroke-width="11" stroke-linecap="round"/>
+</svg>

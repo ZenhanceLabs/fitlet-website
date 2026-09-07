@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="500" viewBox="0 0 1024 500">
+  <title>Fitlet Google Play feature graphic</title>
+  <desc>Simple feature graphic using the existing Fitlet logo and the existing characters umiushi SVG.</desc>
+
+  <rect width="1024" height="500" fill="#c8eef5"/>
+  <path d="M-80 454C140 241 321 520 546 366C732 238 871 143 1108 296" fill="none" stroke="#effaf7" stroke-width="54" stroke-linecap="round" opacity="0.74"/>
+  <path d="M-80 454C140 241 321 520 546 366C732 238 871 143 1108 296" fill="none" stroke="#93d9e5" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+
+  <image x="42" y="151" width="400" height="210" xlink:href="./fitlet_logo.svg" preserveAspectRatio="xMidYMid meet"/>
+  <image x="466" y="-179" width="560" height="792" xlink:href="./umiushi.svg" preserveAspectRatio="none"/>
+</svg>

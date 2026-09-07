@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <g fill="#000000">
+    <!-- left outer plate -->
+    <rect x="155" y="389" width="82" height="223" rx="23" ry="23"/>
+    <!-- left inner plate -->
+    <rect x="248" y="349" width="115" height="323" rx="28" ry="28"/>
+    <!-- handle -->
+    <rect x="352" y="460" width="321" height="82"/>
+    <!-- right inner plate -->
+    <rect x="652" y="349" width="115" height="323" rx="28" ry="28"/>
+    <!-- right outer plate -->
+    <rect x="778" y="389" width="82" height="223" rx="23" ry="23"/>
+  </g>
+</svg>

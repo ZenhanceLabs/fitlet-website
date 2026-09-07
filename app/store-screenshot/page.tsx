@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-08-23-6";
+const storeImageVersion = "2026-09-07-3";
 
 const scenes = {
   home: {
@@ -45,14 +45,55 @@ const scenes = {
   },
 } as const;
 
+const englishScenes = {
+  home: {
+    label: "Home",
+    title: <><span className="store-shot-title-line">Move</span><span className="store-shot-title-line store-shot-title-emphasis">Map moves</span></>,
+    detail: "8 min per session",
+    src: "/store-assets/source/screens/en/real-home.png",
+  },
+  session: {
+    label: "Session",
+    title: <><span className="store-shot-title-line">Let the camera</span><span className="store-shot-title-line store-shot-title-emphasis">count your reps</span></>,
+    detail: "Just set your phone down",
+    src: "/store-assets/source/screens/en/real-session.png",
+  },
+  training: {
+    label: "Training",
+    title: <><span className="store-shot-title-line">Start with any</span><span className="store-shot-title-line store-shot-title-emphasis">workout</span></>,
+    detail: "29 exercises to choose from",
+    src: "/store-assets/source/screens/en/real-training.png",
+  },
+  league: {
+    label: "League",
+    title: <><span className="store-shot-title-line">Climb the ranks</span><span className="store-shot-title-line store-shot-title-emphasis">every week</span></>,
+    detail: "Compete with friends",
+    src: "/store-assets/source/screens/en/real-league.png",
+  },
+  profile: {
+    label: "Profile",
+    title: <><span className="store-shot-title-line">Keep going</span><span className="store-shot-title-line store-shot-title-emphasis">watch yourself grow</span></>,
+    detail: "Your progress adds up",
+    src: "/store-assets/source/screens/en/real-profile.png",
+  },
+  coach: {
+    label: "Coach",
+    title: <><span className="store-shot-title-line">Let your coach</span><span className="store-shot-title-line store-shot-title-emphasis">plan today</span></>,
+    detail: "Your next workout, planned",
+    src: "/store-assets/source/screens/en/real-coach.png",
+    pro: true,
+  },
+} as const;
+
 type SceneKey = keyof typeof scenes;
+type LocaleKey = "ja" | "en";
 
 function isSceneKey(value: string | null): value is SceneKey {
   return value !== null && value in scenes;
 }
 
-function StoreShotCanvas({ sceneKey }: { sceneKey: SceneKey }) {
-  const scene = scenes[sceneKey];
+function StoreShotCanvas({ sceneKey, locale }: { sceneKey: SceneKey; locale: LocaleKey }) {
+  const scene = locale === "en" ? englishScenes[sceneKey] : scenes[sceneKey];
 
   return (
     <main suppressHydrationWarning className={`store-shot store-shot-${sceneKey}`} data-scene={sceneKey}>
@@ -67,7 +108,6 @@ function StoreShotCanvas({ sceneKey }: { sceneKey: SceneKey }) {
       <figure className="store-shot-phone">
         <span className="store-shot-side-button store-shot-side-button-left-one" aria-hidden="true" />
         <span className="store-shot-side-button store-shot-side-button-left-two" aria-hidden="true" />
-        <span className="store-shot-side-button store-shot-side-button-left-three" aria-hidden="true" />
         <span className="store-shot-side-button store-shot-side-button-right" aria-hidden="true" />
         <div className="store-shot-screen">
           <span className="store-shot-notch" aria-hidden="true" />
@@ -105,12 +145,19 @@ function StoreShotGallery() {
 }
 
 export default function StoreScreenshotPage() {
-  const requestedScene = typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("scene");
-  const sceneKey: SceneKey | null = isSceneKey(requestedScene) ? requestedScene : null;
+  const [sceneKey, setSceneKey] = useState<SceneKey | null>(null);
+  const [locale, setLocale] = useState<LocaleKey>("ja");
 
   useEffect(() => {
     document.documentElement.classList.add("store-shot-ready");
+    const timer = window.setTimeout(() => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const requestedScene = searchParams.get("scene");
+      setLocale(searchParams.get("locale") === "en" ? "en" : "ja");
+      setSceneKey(isSceneKey(requestedScene) ? requestedScene : null);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
-  return sceneKey ? <StoreShotCanvas sceneKey={sceneKey} /> : <StoreShotGallery />;
+  return sceneKey ? <StoreShotCanvas sceneKey={sceneKey} locale={locale} /> : <StoreShotGallery />;
 }
