@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-09-07-3";
+const storeImageVersion = "2026-09-07-4";
 
 const scenes = {
   home: {

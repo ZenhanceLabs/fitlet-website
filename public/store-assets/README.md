@@ -2,21 +2,23 @@
 
 既存の Fitlet 素材だけを使い、明るい配色・太い輪郭・フラットな面でまとめた日本語・英語のストア素材です。フィーチャーグラフィックはロゴと既存キャラクターだけでシンプルに、最初の2枚は1枚のホームマップ画面を大きく斜めに横たわせて左右2枚にまたがせています。ストア表示時の隙間を見越して、編集元の連結キャンバスには中央32pxの想定ガターを設け、右側の書き出し範囲をずらしています。編集元は `source/` にあります。PNG は `node scripts/export-store-assets.mjs` で再出力できます。
 
+Appleの提出用スクリーンショットは、エラーで指定された6.5インチ用の `1284 × 2778 px` に統一しています。`apple/screenshots/` 内には入稿用画像だけを置き、2枚連結の確認用画像は `previews/apple/` に分けています。
+
 ## 納品ファイル
 
 ### Apple App Store
 
 - アイコンは新規作成していません。既存の `public/brand/fitlet-ios-icon.png` をそのまま使ってください。
-- `apple/screenshots/fitlet-cover-ja.png` — 1290 × 2796。マップスプレッドの左側・ストア1枚目。
-- `apple/screenshots/fitlet-home-ja.png` — 1290 × 2796。マップスプレッドの右側・ストア2枚目。
-- `apple/screenshots/fitlet-map-spread-with-gutter.png` — 上記2枚をストア表示時の32pxガター付きで横につないだ確認用プレビュー。
+- `apple/screenshots/fitlet-cover-ja.png` — 1284 × 2778。Appleの6.5インチ用、マップスプレッドの左側・ストア1枚目。
+- `apple/screenshots/fitlet-home-ja.png` — 1284 × 2778。Appleの6.5インチ用、マップスプレッドの右側・ストア2枚目。
+- `previews/apple/fitlet-map-spread-ja.png` — 上記2枚をストア表示時の32pxガター付きで横につないだ確認用プレビュー。入稿には使いません。
 - `apple/screenshots/fitlet-*-ja.png` — 1・2枚目以外の既存日本語ストア画像 5 点。
 
 ### Apple App Store（English）
 
-- `apple/screenshots/en/fitlet-cover-en.png` — 1290 × 2796。マップスプレッドの左側・ストア1枚目。
-- `apple/screenshots/en/fitlet-home-en.png` — 1290 × 2796。マップスプレッドの右側・ストア2枚目。
-- `apple/screenshots/en/fitlet-map-spread-with-gutter.png` — 上記2枚をストア表示時の32pxガター付きで横につないだ確認用プレビュー。
+- `apple/screenshots/en/fitlet-cover-en.png` — 1284 × 2778。Appleの6.5インチ用、マップスプレッドの左側・ストア1枚目。
+- `apple/screenshots/en/fitlet-home-en.png` — 1284 × 2778。Appleの6.5インチ用、マップスプレッドの右側・ストア2枚目。
+- `previews/apple/fitlet-map-spread-en.png` — 上記2枚をストア表示時の32pxガター付きで横につないだ確認用プレビュー。入稿には使いません。
 - `apple/screenshots/en/fitlet-*-en.png` — 1・2枚目以外の既存英語ストア画像 5 点。
 
 ### Google Play

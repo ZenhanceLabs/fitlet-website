@@ -5,8 +5,8 @@ import sharp from "sharp";
 const root = process.cwd();
 const assetsRoot = path.join(root, "public", "store-assets");
 const sourceRoot = path.join(assetsRoot, "source");
-const screenshotWidth = 1290;
-const screenshotHeight = 2796;
+const screenshotWidth = 1284;
+const screenshotHeight = 2778;
 const storeGutter = 32;
 const connectedCanvasWidth = screenshotWidth * 2 + storeGutter;
 const googleWidth = 1280;
@@ -54,11 +54,13 @@ const featureGraphic = path.join(assetsRoot, "google-play", "feature-graphic-102
 const existingIosIcon = path.join(root, "public", "brand", "fitlet-ios-icon.png");
 const appleScreenshotsRoot = path.join(assetsRoot, "apple", "screenshots");
 const googleScreenshotsRoot = path.join(assetsRoot, "google-play", "screenshots");
+const applePreviewRoot = path.join(assetsRoot, "previews", "apple");
 const screenshotNames = ["home", "training", "session", "league", "profile", "coach"];
 
 await fs.mkdir(path.dirname(googleIcon), { recursive: true });
 await fs.mkdir(appleScreenshotsRoot, { recursive: true });
 await fs.mkdir(googleScreenshotsRoot, { recursive: true });
+await fs.mkdir(applePreviewRoot, { recursive: true });
 
 await sharp(existingIosIcon)
   .resize(512, 512, { fit: "fill", kernel: sharp.kernel.lanczos3 })
@@ -102,7 +104,7 @@ async function exportMapLocale({ locale, sourceName, appleRoot, googleRoot, publ
   const secondApple = path.join(appleRoot, `fitlet-home-${locale}.png`);
   const firstGoogle = path.join(googleRoot, `fitlet-cover-${locale}-1280x2560.png`);
   const secondGoogle = path.join(googleRoot, `fitlet-home-${locale}-1280x2560.png`);
-  const preview = path.join(appleRoot, "fitlet-map-spread-with-gutter.png");
+  const preview = path.join(applePreviewRoot, `fitlet-map-spread-${locale}.png`);
 
   await fs.writeFile(firstApple, firstMapCrop);
   await fs.writeFile(secondApple, secondMapCrop);

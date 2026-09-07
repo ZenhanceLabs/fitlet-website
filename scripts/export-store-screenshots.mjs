@@ -7,6 +7,8 @@ const port = Number(process.env.FITLET_STORE_PORT ?? 8095);
 const locale = process.env.FITLET_STORE_LOCALE === "en" ? "en" : "ja";
 const outputRoot = resolve(`public/store/${locale}`);
 const basePath = "/fitlet-website";
+const screenshotWidth = 1284;
+const screenshotHeight = 2778;
 const scenes = ["home", "session", "training", "league", "coach", "profile"];
 const server = process.env.FITLET_STORE_SERVER === "dev"
   ? spawn("node_modules/.bin/vinext", ["dev", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: "inherit" })
@@ -32,7 +34,7 @@ try {
 
   await mkdir(outputRoot, { recursive: true });
   const browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage({ viewport: { width: 1290, height: 2796 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: screenshotWidth, height: screenshotHeight }, deviceScaleFactor: 1 });
 
   await page.route("**/*", async (route) => {
     const requestUrl = new URL(route.request().url());
