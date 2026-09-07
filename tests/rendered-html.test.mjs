@@ -64,7 +64,7 @@ test("server-renders legal routes", async () => {
       assert.doesNotMatch(html, /1\. 取得する情報/);
     }
     if (pathname === "/support") {
-      assert.match(html, /zenhancelabs@gmail\.com/);
+      assert.match(html, /fitlet-support@zenhance\.dev/);
       assert.match(html, /forms\.gle\/A6AuxEZ4otXFmGQ28/);
       assert.match(html, /x\.com\/ZenhanceLabs/);
       assert.match(html, /href="\/privacy\/?"/);

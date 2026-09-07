@@ -25,12 +25,12 @@ const questions = {
 
 const contactLinks = {
   ja: [
-    { label: "メール", description: "個別の相談・削除依頼", href: "mailto:zenhancelabs@gmail.com?subject=Fitletへのお問い合わせ", external: false },
+    { label: "メール", description: "個別の相談・削除依頼", href: "mailto:fitlet-support@zenhance.dev?subject=Fitletへのお問い合わせ", external: false },
     { label: "X", description: "お知らせ・短い相談", href: "https://x.com/ZenhanceLabs", external: true },
     { label: "フォーム", description: "不具合・アイデアの報告", href: "https://forms.gle/A6AuxEZ4otXFmGQ28", external: true },
   ],
   en: [
-    { label: "Email", description: "Questions and deletion requests", href: "mailto:zenhancelabs@gmail.com?subject=Fitlet%20support", external: false },
+    { label: "Email", description: "Questions and deletion requests", href: "mailto:fitlet-support@zenhance.dev?subject=Fitlet%20support", external: false },
     { label: "X", description: "News and short questions", href: "https://x.com/ZenhanceLabs", external: true },
     { label: "Form", description: "Bug reports and ideas", href: "https://forms.gle/A6AuxEZ4otXFmGQ28", external: true },
   ],

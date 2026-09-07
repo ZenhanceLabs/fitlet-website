@@ -5,7 +5,7 @@ import { useLocale } from "../lib/locale";
 import { sitePath } from "../lib/sitePath";
 
 const UPDATED = "2026年8月19日";
-const SUPPORT_EMAIL = "zenhancelabs@gmail.com";
+const SUPPORT_EMAIL = "fitlet-support@zenhance.dev";
 
 type LegalMode = "hub" | "privacy" | "terms";
 
