@@ -5,6 +5,7 @@ import { join, resolve } from "node:path";
 const port = Number(process.env.FITLET_PAGES_PORT ?? 4173);
 const root = resolve("dist/client");
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/^\/+|\/+$/g, "");
+const siteOrigin = process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://zenhancelabs.github.io";
 const routes = ["/", "/friend", "/legal", "/pose-calibration", "/privacy", "/store-screenshot", "/support", "/terms"];
 const server = spawn("node_modules/.bin/vinext", ["start", "--port", String(port)], { env: process.env, stdio: "inherit" });
 
@@ -30,11 +31,16 @@ try {
     if (!response.ok) throw new Error(`${route} のHTML生成に失敗しました（${response.status}）。`);
     const outputPath = route === "/" ? join(root, "index.html") : join(root, route.slice(1), "index.html");
     await mkdir(resolve(outputPath, ".."), { recursive: true });
-    await writeFile(outputPath, await response.text(), "utf8");
+    const canonical = new URL(`/${basePath}${route === "/" ? "/" : `${route}/`}`.replace(/\/+/g, "/"), `${siteOrigin}/`).toString();
+    const html = (await response.text()).replace(
+      "</head>",
+      `  <link rel="canonical" href="${canonical}" />\n  <meta property="og:url" content="${canonical}" />\n  <meta name="twitter:url" content="${canonical}" />\n</head>`,
+    );
+    await writeFile(outputPath, html, "utf8");
   }
 
-  // assetPrefix makes the generated HTML point at /fitlet-website/_next/...,
-  // while the Pages artifact itself is already mounted at /fitlet-website.
+  // assetPrefix makes the generated HTML point at /fitlet/_next/...
+  // while the Pages artifact itself is already mounted at /fitlet.
   // Flatten the emitted client assets so that URL resolves to this directory.
   if (basePath) {
     const nestedNextRoot = join(root, basePath, "_next");

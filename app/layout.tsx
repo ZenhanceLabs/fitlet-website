@@ -4,10 +4,10 @@ import { LocaleProvider } from "./lib/locale";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isPagesBuild = process.env.FITLET_PAGES === "true";
-const metadataBase = isPagesBuild
-  ? new URL("https://zenhancelabs.github.io/fitlet-website/")
-  : undefined;
-const socialImage = "https://zenhancelabs.github.io/fitlet-website/brand/fitlet-og.png";
+const siteOrigin = process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://zenhancelabs.github.io";
+const publicBasePath = basePath ? `${basePath.replace(/\/+$/, "")}/` : "/";
+const metadataBase = isPagesBuild ? new URL(publicBasePath, siteOrigin) : undefined;
+const socialImage = new URL(`${publicBasePath}brand/fitlet-og.png`, siteOrigin).toString();
 const iconPath = `${basePath}/brand/fitlet-ios-icon.png`;
 
 export const viewport: Viewport = {

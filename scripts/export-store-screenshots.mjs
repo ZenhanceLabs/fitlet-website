@@ -6,7 +6,7 @@ import { chromium } from "playwright";
 const port = Number(process.env.FITLET_STORE_PORT ?? 8095);
 const locale = process.env.FITLET_STORE_LOCALE === "en" ? "en" : "ja";
 const outputRoot = resolve(`public/store/${locale}`);
-const basePath = "/fitlet-website";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/fitlet";
 const screenshotWidth = 1284;
 const screenshotHeight = 2778;
 const scenes = ["home", "session", "training", "league", "coach", "profile"];

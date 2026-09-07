@@ -25,6 +25,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:pages
+        env:
+          NEXT_PUBLIC_BASE_PATH: /fitlet-website
+          NEXT_PUBLIC_SITE_ORIGIN: https://zenhancelabs.github.io
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
