@@ -21,7 +21,7 @@ test("server-renders the Fitlet home page", async () => {
   assert.match(html, /習慣に/);
   assert.match(html, /次の場所へ進みます/);
   assert.match(html, /自動でカウント/);
-  assert.match(html, /39種目から/);
+  assert.match(html, /29種目から/);
   assert.match(html, /毎週のFP/);
   assert.match(html, /Fitlet Pro/);
   assert.match(html, /[/]app-screens[/]ja[/]real-home\.png/);

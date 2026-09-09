@@ -117,7 +117,7 @@ export default function Home() {
     screens: [
       { className: "fitlet-new-screen-home", label: "ホーム", title: "動くと、マップが進む。", body: "ひとつ終えるたび、次の場所へ。毎日の小さな達成を、目に見える旅にします。", name: "home", alt: "Fitletホームのマップ画面" },
       { className: "fitlet-new-screen-session", label: "トレーニング中", title: "カメラが、回数を数える。", body: "カメラが動きを捉えて、回数を自動で数えます。", name: "session", alt: "Fitletトレーニング中。実写のスクワットと青いボーン表示" },
-      { className: "fitlet-new-screen-training", label: "トレーニング", title: "やりたい運動から始める。", body: "39種目から好きな運動を選んで、自分だけのセットも作れます。", name: "training", alt: "Fitletトレーニング。39種目の一覧" },
+      { className: "fitlet-new-screen-training", label: "トレーニング", title: "やりたい運動から始める。", body: "29種目から好きな運動を選んで、自分だけのセットも作れます。", name: "training", alt: "Fitletトレーニング。29種目の一覧" },
       { className: "fitlet-new-screen-league", label: "リーグ", title: "仲間と競う。", body: "毎週のFPで順位が変わるから、もう一回動きたくなる。", name: "league", alt: "Fitletリーグ。Bronze IIIと週間ランキング" },
       { className: "fitlet-new-screen-profile", label: "プロフィール", title: "続けた記録が残る。", body: "レベルや連続日数を、ハチマキと一緒に振り返れます。", name: "profile", alt: "Fitletプロフィール。ハチマキと7日連続の記録" },
     ],

@@ -21,7 +21,7 @@ const scenes = {
   training: {
     label: "トレーニング",
     title: <><span className="store-shot-title-line">好きな運動から</span><span className="store-shot-title-line store-shot-title-emphasis">始められる</span></>,
-    detail: "39種目から 自由に選べる",
+    detail: "29種目から 自由に選べる",
     src: "/app-screens/ja/real-training.png",
   },
   league: {
