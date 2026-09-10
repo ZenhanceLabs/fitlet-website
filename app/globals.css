@@ -1186,13 +1186,13 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
   top: 780px;
   left: 332px;
   width: 1400px;
-  border-width: 18px;
-  border-radius: 126px 126px 0 0;
-  padding: 16px;
+  border-width: 10px;
+  border-radius: 118px 118px 0 0;
+  padding: 10px;
 }
 .store-shot-ipad .store-shot-screen {
   aspect-ratio: 1640 / 2360;
-  border-radius: 106px 106px 0 0;
+  border-radius: 98px 98px 0 0;
 }
 .store-shot-ipad .store-shot-notch {
   top: 18px;
@@ -1200,12 +1200,12 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
   height: 22px;
 }
 .store-shot-ipad .store-shot-side-button {
-  width: 14px;
-  border-radius: 8px 0 0 8px;
+  width: 8px;
+  border-radius: 6px 0 0 6px;
 }
-.store-shot-ipad .store-shot-side-button-left-one { left: -28px; }
-.store-shot-ipad .store-shot-side-button-left-two { left: -28px; }
-.store-shot-ipad .store-shot-side-button-right { right: -28px; border-radius: 0 8px 8px 0; }
+.store-shot-ipad .store-shot-side-button-left-one { left: -20px; }
+.store-shot-ipad .store-shot-side-button-left-two { left: -20px; }
+.store-shot-ipad .store-shot-side-button-right { right: -20px; border-radius: 0 6px 6px 0; }
 
 .store-shot-gallery {
   min-height: 100vh;

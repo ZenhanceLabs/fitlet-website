@@ -12,7 +12,7 @@
       <feDropShadow dx="0" dy="35" stdDeviation="30" flood-color="#111318" flood-opacity="0.24"/>
     </filter>
     <clipPath id="homeScreenClip">
-      <rect x="1218" y="124" width="1744" height="2510" rx="96"/>
+      <rect x="1192" y="102" width="1776" height="2555" rx="82"/>
     </clipPath>
   </defs>
 
@@ -21,9 +21,9 @@
 
   <g transform="rotate(-25 2088 1376)" filter="url(#tabletShadow)">
     <rect x="1180" y="80" width="1800" height="2600" rx="126" fill="url(#tabletBody)"/>
-    <rect x="1218" y="124" width="1744" height="2510" rx="96" fill="#ffffff"/>
-    <image x="1218" y="124" width="1744" height="2510" xlink:href="./screens/ipad/ja/real-home.png" preserveAspectRatio="none" clip-path="url(#homeScreenClip)"/>
-    <circle cx="2090" cy="165" r="11" fill="#111318"/>
+    <rect x="1192" y="102" width="1776" height="2555" rx="82" fill="#ffffff"/>
+    <image x="1192" y="102" width="1776" height="2555" xlink:href="./screens/ipad/ja/real-home.png" preserveAspectRatio="none" clip-path="url(#homeScreenClip)"/>
+    <circle cx="2090" cy="126" r="10" fill="#111318"/>
   </g>
 
   <g fill="#111318" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif" font-weight="950">
