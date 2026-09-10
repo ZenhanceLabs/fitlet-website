@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-09-07-4";
+const storeImageVersion = "2026-09-10-1";
 
 const scenes = {
   home: {
@@ -87,16 +87,37 @@ const englishScenes = {
 
 type SceneKey = keyof typeof scenes;
 type LocaleKey = "ja" | "en";
+type DeviceKey = "iphone" | "ipad";
+
+const ipadScreenSources = {
+  ja: {
+    home: "/store-assets/source/screens/ipad/ja/real-home.png",
+    session: "/store-assets/source/screens/ipad/ja/real-session.png",
+    training: "/store-assets/source/screens/ipad/ja/real-training.png",
+    league: "/store-assets/source/screens/ipad/ja/real-league.png",
+    profile: "/store-assets/source/screens/ipad/ja/real-profile.png",
+    coach: "/store-assets/source/screens/ipad/ja/real-coach.png",
+  },
+  en: {
+    home: "/store-assets/source/screens/ipad/en/real-home.png",
+    session: "/store-assets/source/screens/ipad/en/real-session.png",
+    training: "/store-assets/source/screens/ipad/en/real-training.png",
+    league: "/store-assets/source/screens/ipad/en/real-league.png",
+    profile: "/store-assets/source/screens/ipad/en/real-profile.png",
+    coach: "/store-assets/source/screens/ipad/en/real-coach.png",
+  },
+} as const;
 
 function isSceneKey(value: string | null): value is SceneKey {
   return value !== null && value in scenes;
 }
 
-function StoreShotCanvas({ sceneKey, locale }: { sceneKey: SceneKey; locale: LocaleKey }) {
+function StoreShotCanvas({ sceneKey, locale, device }: { sceneKey: SceneKey; locale: LocaleKey; device: DeviceKey }) {
   const scene = locale === "en" ? englishScenes[sceneKey] : scenes[sceneKey];
+  const imageSource = device === "ipad" ? ipadScreenSources[locale][sceneKey] : scene.src;
 
   return (
-    <main suppressHydrationWarning className={`store-shot store-shot-${sceneKey}`} data-scene={sceneKey}>
+    <main suppressHydrationWarning className={`store-shot store-shot-${sceneKey} store-shot-${device}`} data-scene={sceneKey}>
       <div className="store-shot-brand">
         <img src={publicAsset("/brand/fitlet-logo.svg")} alt="Fitlet" />
       </div>
@@ -111,10 +132,29 @@ function StoreShotCanvas({ sceneKey, locale }: { sceneKey: SceneKey; locale: Loc
         <span className="store-shot-side-button store-shot-side-button-right" aria-hidden="true" />
         <div className="store-shot-screen">
           <span className="store-shot-notch" aria-hidden="true" />
-          <img src={publicAsset(scene.src)} alt="" />
+          <img src={publicAsset(imageSource)} alt="" />
         </div>
       </figure>
     </main>
+  );
+}
+
+function StoreShotGalleryGrid({ device }: { device: DeviceKey }) {
+  const imageRoot = device === "ipad" ? "/store/ipad/ja" : "/store/ja";
+  const deviceQuery = device === "ipad" ? "&device=ipad" : "";
+
+  return (
+    <div className="store-shot-gallery-grid">
+      {(Object.entries(scenes) as Array<[SceneKey, (typeof scenes)[SceneKey]]>).map(([key, scene]) => (
+        <a className="store-shot-gallery-card" href={publicAsset(`/store-screenshot/?scene=${key}&locale=ja${deviceQuery}`)} key={key}>
+          <img src={publicAsset(`${imageRoot}/fitlet-${key}-ja.png?v=${storeImageVersion}`)} alt={`${scene.label}の${device === "ipad" ? "iPad用" : ""}ストア用画像`} />
+          <div>
+            <strong>{scene.label}</strong>
+            <span>開く ↗</span>
+          </div>
+        </a>
+      ))}
+    </div>
   );
 }
 
@@ -129,17 +169,15 @@ function StoreShotGallery() {
           <span>6枚の画像を個別に確認できます。</span>
         </div>
       </header>
-      <div className="store-shot-gallery-grid">
-        {(Object.entries(scenes) as Array<[SceneKey, (typeof scenes)[SceneKey]]>).map(([key, scene]) => (
-          <a className="store-shot-gallery-card" href={publicAsset(`/store-screenshot/?scene=${key}&locale=ja`)} key={key}>
-            <img src={publicAsset(`/store/ja/fitlet-${key}-ja.png?v=${storeImageVersion}`)} alt={`${scene.label}のストア用画像`} />
-            <div>
-              <strong>{scene.label}</strong>
-              <span>開く ↗</span>
-            </div>
-          </a>
-        ))}
-      </div>
+      <StoreShotGalleryGrid device="iphone" />
+      <section className="store-shot-gallery-section">
+        <div className="store-shot-gallery-section-head">
+          <p>iPad 13-inch</p>
+          <h2>iPad用ストア画像</h2>
+          <span>13インチディスプレイ向けの7枚構成です。</span>
+        </div>
+        <StoreShotGalleryGrid device="ipad" />
+      </section>
     </main>
   );
 }
@@ -147,6 +185,7 @@ function StoreShotGallery() {
 export default function StoreScreenshotPage() {
   const [sceneKey, setSceneKey] = useState<SceneKey | null>(null);
   const [locale, setLocale] = useState<LocaleKey>("ja");
+  const [device, setDevice] = useState<DeviceKey>("iphone");
 
   useEffect(() => {
     document.documentElement.classList.add("store-shot-ready");
@@ -154,10 +193,11 @@ export default function StoreScreenshotPage() {
       const searchParams = new URLSearchParams(window.location.search);
       const requestedScene = searchParams.get("scene");
       setLocale(searchParams.get("locale") === "en" ? "en" : "ja");
+      setDevice(searchParams.get("device") === "ipad" ? "ipad" : "iphone");
       setSceneKey(isSceneKey(requestedScene) ? requestedScene : null);
     }, 0);
     return () => window.clearTimeout(timer);
   }, []);
 
-  return sceneKey ? <StoreShotCanvas sceneKey={sceneKey} locale={locale} /> : <StoreShotGallery />;
+  return sceneKey ? <StoreShotCanvas sceneKey={sceneKey} locale={locale} device={device} /> : <StoreShotGallery />;
 }

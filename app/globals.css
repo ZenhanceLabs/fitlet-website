@@ -1008,7 +1008,7 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
   .fitlet-new-faq-list summary span { opacity: 1; transform: none; transition: none; }
 }
 
-/* App Store artwork: fixed 1290×2796 output for the 6.7-inch portrait slot. */
+/* App Store artwork: the iPhone canvas stays fixed for the 6.7-inch portrait slot. */
 .store-shot {
   --store-bg: #e4f5f4;
   --store-accent: #20b8c3;
@@ -1154,6 +1154,59 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
 .store-shot-coach .store-shot-copy p { color: rgba(17,19,24,.76); }
 .store-shot-coach .store-shot-phone { box-shadow: 0 35px 60px rgba(17,19,24,.2), 0 2px 0 rgba(255,255,255,.1) inset; }
 
+/* iPad 13-inch artwork uses the same type, framing, and generous device scale. */
+.store-shot-ipad {
+  width: 2064px;
+  height: 2752px;
+}
+.store-shot-ipad .store-shot-brand {
+  top: 100px;
+  left: 140px;
+  width: 430px;
+}
+.store-shot-ipad .store-shot-pro-logo {
+  top: 108px;
+  right: 140px;
+  width: 430px;
+}
+.store-shot-ipad .store-shot-copy {
+  top: 270px;
+  right: 140px;
+  left: 140px;
+}
+.store-shot-ipad .store-shot-copy h1 {
+  max-width: 1800px;
+  font-size: 170px;
+}
+.store-shot-ipad .store-shot-copy p {
+  margin-top: 40px;
+  font-size: 88px;
+}
+.store-shot-ipad .store-shot-phone {
+  top: 780px;
+  left: 332px;
+  width: 1400px;
+  border-width: 18px;
+  border-radius: 126px 126px 0 0;
+  padding: 16px;
+}
+.store-shot-ipad .store-shot-screen {
+  aspect-ratio: 1640 / 2360;
+  border-radius: 106px 106px 0 0;
+}
+.store-shot-ipad .store-shot-notch {
+  top: 18px;
+  width: 22px;
+  height: 22px;
+}
+.store-shot-ipad .store-shot-side-button {
+  width: 14px;
+  border-radius: 8px 0 0 8px;
+}
+.store-shot-ipad .store-shot-side-button-left-one { left: -28px; }
+.store-shot-ipad .store-shot-side-button-left-two { left: -28px; }
+.store-shot-ipad .store-shot-side-button-right { right: -28px; border-radius: 0 8px 8px 0; }
+
 .store-shot-gallery {
   min-height: 100vh;
   padding: 76px 48px 110px;
@@ -1169,6 +1222,11 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
 .store-shot-gallery-head h1 { margin: 0; font-size: clamp(42px, 6vw, 78px); font-weight: 950; letter-spacing: -.1em; line-height: .98; }
 .store-shot-gallery-head span { display: block; margin-top: 20px; color: #687178; font-size: 15px; font-weight: 700; }
 .store-shot-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 66px; }
+.store-shot-gallery-section { margin-top: 124px; }
+.store-shot-gallery-section-head p { margin: 0 0 14px; color: #7a8286; font-size: 13px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.store-shot-gallery-section-head h2 { margin: 0; font-size: clamp(34px, 5vw, 58px); font-weight: 950; letter-spacing: -.09em; line-height: 1; }
+.store-shot-gallery-section-head span { display: block; margin-top: 18px; color: #687178; font-size: 15px; font-weight: 700; }
+.store-shot-gallery-section .store-shot-gallery-grid { margin-top: 42px; }
 .store-shot-gallery-card { display: block; overflow: hidden; border-radius: 30px; background: #fff; box-shadow: 0 16px 36px rgba(30,35,39,.08); transition: transform .2s ease, box-shadow .2s ease; }
 .store-shot-gallery-card:hover { box-shadow: 0 22px 44px rgba(30,35,39,.14); transform: translateY(-5px); }
 .store-shot-gallery-card > img { display: block; width: 100%; height: auto; }

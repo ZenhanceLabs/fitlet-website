@@ -5,10 +5,11 @@ import { chromium } from "playwright";
 
 const port = Number(process.env.FITLET_STORE_PORT ?? 8095);
 const locale = process.env.FITLET_STORE_LOCALE === "en" ? "en" : "ja";
-const outputRoot = resolve(`public/store/${locale}`);
+const device = process.env.FITLET_STORE_DEVICE === "ipad" ? "ipad" : "iphone";
+const outputRoot = resolve(`public/store/${device}/${locale}`);
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/fitlet";
-const screenshotWidth = 1284;
-const screenshotHeight = 2778;
+const screenshotWidth = device === "ipad" ? 2064 : 1284;
+const screenshotHeight = device === "ipad" ? 2752 : 2778;
 const scenes = ["home", "session", "training", "league", "coach", "profile"];
 const server = process.env.FITLET_STORE_SERVER === "dev"
   ? spawn("node_modules/.bin/vinext", ["dev", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: "inherit" })
@@ -47,7 +48,7 @@ try {
   });
 
   for (const scene of scenes) {
-    await page.goto(`http://127.0.0.1:${port}/store-screenshot/?scene=${scene}&locale=${locale}`, { waitUntil: "domcontentloaded" });
+    await page.goto(`http://127.0.0.1:${port}/store-screenshot/?scene=${scene}&locale=${locale}&device=${device}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction((expectedScene) => document.querySelector(".store-shot")?.getAttribute("data-scene") === expectedScene, scene);
     await page.waitForFunction(() => {
       const image = document.querySelector(".store-shot-screen img");
@@ -58,7 +59,7 @@ try {
   }
 
   await browser.close();
-  console.log(`ストア画像を ${outputRoot} に書き出しました（${scenes.length}枚）。`);
+  console.log(`${device} のストア画像を ${outputRoot} に書き出しました（${scenes.length}枚）。`);
 } finally {
   stopServer();
 }

@@ -8,7 +8,9 @@ const sourceRoot = path.join(assetsRoot, "source");
 const screenshotWidth = 1284;
 const screenshotHeight = 2778;
 const storeGutter = 32;
-const connectedCanvasWidth = screenshotWidth * 2 + storeGutter;
+const ipadScreenshotWidth = 2064;
+const ipadScreenshotHeight = 2752;
+const ipadStoreGutter = 48;
 const googleWidth = 1280;
 const googleHeight = 2560;
 
@@ -55,12 +57,17 @@ const existingIosIcon = path.join(root, "public", "brand", "fitlet-ios-icon.png"
 const appleScreenshotsRoot = path.join(assetsRoot, "apple", "screenshots");
 const googleScreenshotsRoot = path.join(assetsRoot, "google-play", "screenshots");
 const applePreviewRoot = path.join(assetsRoot, "previews", "apple");
+const ipadStoreRoot = path.join(root, "public", "store", "ipad");
+const ipadAppleScreenshotsRoot = path.join(appleScreenshotsRoot, "ipad");
+const ipadApplePreviewRoot = path.join(applePreviewRoot, "ipad");
 const screenshotNames = ["home", "training", "session", "league", "profile", "coach"];
 
 await fs.mkdir(path.dirname(googleIcon), { recursive: true });
 await fs.mkdir(appleScreenshotsRoot, { recursive: true });
 await fs.mkdir(googleScreenshotsRoot, { recursive: true });
 await fs.mkdir(applePreviewRoot, { recursive: true });
+await fs.mkdir(ipadAppleScreenshotsRoot, { recursive: true });
+await fs.mkdir(ipadApplePreviewRoot, { recursive: true });
 
 await sharp(existingIosIcon)
   .resize(512, 512, { fit: "fill", kernel: sharp.kernel.lanczos3 })
@@ -69,32 +76,43 @@ await sharp(existingIosIcon)
   .toFile(googleIcon);
 await renderSvg("feature-graphic-ja.svg", featureGraphic, 1024, 500, "#eef9f5");
 
-async function exportMapLocale({ locale, sourceName, appleRoot, googleRoot, publicRoot }) {
+async function exportMapLocale({
+  locale,
+  sourceName,
+  appleRoot,
+  googleRoot,
+  publicRoot,
+  width = screenshotWidth,
+  height = screenshotHeight,
+  gutter = storeGutter,
+  previewRoot = applePreviewRoot,
+}) {
+  const connectedCanvasWidth = width * 2 + gutter;
   const mapSpreadSvg = await inlineLocalImages(path.join(sourceRoot, sourceName));
   const mapSpreadRendered = await sharp(mapSpreadSvg)
-    .resize(connectedCanvasWidth, screenshotHeight, { fit: "fill" })
+    .resize(connectedCanvasWidth, height, { fit: "fill" })
     .flatten({ background: "#e4f5f4" })
     .png()
     .toBuffer();
   const firstMapCrop = await sharp(mapSpreadRendered)
-    .extract({ left: 0, top: 0, width: screenshotWidth, height: screenshotHeight })
+    .extract({ left: 0, top: 0, width, height })
     .png({ compressionLevel: 9 })
     .toBuffer();
   const secondMapCrop = await sharp(mapSpreadRendered)
-    .extract({ left: screenshotWidth + storeGutter, top: 0, width: screenshotWidth, height: screenshotHeight })
+    .extract({ left: width + gutter, top: 0, width, height })
     .png({ compressionLevel: 9 })
     .toBuffer();
   const connectedPreview = await sharp({
     create: {
       width: connectedCanvasWidth,
-      height: screenshotHeight,
+      height,
       channels: 3,
       background: "#ffffff",
     },
   })
     .composite([
       { input: firstMapCrop, left: 0, top: 0 },
-      { input: secondMapCrop, left: screenshotWidth + storeGutter, top: 0 },
+      { input: secondMapCrop, left: width + gutter, top: 0 },
     ])
     .flatten({ background: "#ffffff" })
     .png()
@@ -102,20 +120,26 @@ async function exportMapLocale({ locale, sourceName, appleRoot, googleRoot, publ
 
   const firstApple = path.join(appleRoot, `fitlet-cover-${locale}.png`);
   const secondApple = path.join(appleRoot, `fitlet-home-${locale}.png`);
-  const firstGoogle = path.join(googleRoot, `fitlet-cover-${locale}-1280x2560.png`);
-  const secondGoogle = path.join(googleRoot, `fitlet-home-${locale}-1280x2560.png`);
-  const preview = path.join(applePreviewRoot, `fitlet-map-spread-${locale}.png`);
+  const firstGoogle = googleRoot ? path.join(googleRoot, `fitlet-cover-${locale}-1280x2560.png`) : null;
+  const secondGoogle = googleRoot ? path.join(googleRoot, `fitlet-home-${locale}-1280x2560.png`) : null;
+  const preview = path.join(previewRoot, `fitlet-map-spread-${locale}.png`);
 
   await fs.writeFile(firstApple, firstMapCrop);
   await fs.writeFile(secondApple, secondMapCrop);
   await sharp(connectedPreview).png({ compressionLevel: 9 }).toFile(preview);
-  await exportGoogleScreenshot(firstApple, firstGoogle);
-  await exportGoogleScreenshot(secondApple, secondGoogle);
+  if (firstGoogle && secondGoogle) {
+    await exportGoogleScreenshot(firstApple, firstGoogle);
+    await exportGoogleScreenshot(secondApple, secondGoogle);
+  }
   if (publicRoot) await fs.copyFile(secondApple, path.join(publicRoot, `fitlet-home-${locale}.png`));
 }
 
 await fs.mkdir(path.join(appleScreenshotsRoot, "en"), { recursive: true });
 await fs.mkdir(path.join(googleScreenshotsRoot, "en"), { recursive: true });
+await fs.mkdir(path.join(ipadAppleScreenshotsRoot, "ja"), { recursive: true });
+await fs.mkdir(path.join(ipadAppleScreenshotsRoot, "en"), { recursive: true });
+await fs.mkdir(path.join(ipadStoreRoot, "ja"), { recursive: true });
+await fs.mkdir(path.join(ipadStoreRoot, "en"), { recursive: true });
 
 await exportMapLocale({
   locale: "ja",
@@ -131,6 +155,26 @@ await exportMapLocale({
   googleRoot: path.join(googleScreenshotsRoot, "en"),
   publicRoot: path.join(root, "public", "store", "en"),
 });
+await exportMapLocale({
+  locale: "ja",
+  sourceName: "ipad-map-spread-ja.svg",
+  appleRoot: path.join(ipadAppleScreenshotsRoot, "ja"),
+  publicRoot: path.join(ipadStoreRoot, "ja"),
+  width: ipadScreenshotWidth,
+  height: ipadScreenshotHeight,
+  gutter: ipadStoreGutter,
+  previewRoot: ipadApplePreviewRoot,
+});
+await exportMapLocale({
+  locale: "en",
+  sourceName: "ipad-map-spread-en.svg",
+  appleRoot: path.join(ipadAppleScreenshotsRoot, "en"),
+  publicRoot: path.join(ipadStoreRoot, "en"),
+  width: ipadScreenshotWidth,
+  height: ipadScreenshotHeight,
+  gutter: ipadStoreGutter,
+  previewRoot: ipadApplePreviewRoot,
+});
 
 for (const locale of ["ja", "en"]) {
   const sourceScreenshotsRoot = path.join(root, "public", "store", locale);
@@ -141,6 +185,16 @@ for (const locale of ["ja", "en"]) {
     const sourcePath = path.join(sourceScreenshotsRoot, name);
     await fs.copyFile(sourcePath, path.join(appleRoot, name));
     await exportGoogleScreenshot(sourcePath, path.join(googleRoot, name.replace(".png", "-1280x2560.png")));
+  }
+}
+
+for (const locale of ["ja", "en"]) {
+  const sourceScreenshotsRoot = path.join(ipadStoreRoot, locale);
+  const appleRoot = path.join(ipadAppleScreenshotsRoot, locale);
+  for (const scene of screenshotNames) {
+    if (scene === "home") continue;
+    const name = `fitlet-${scene}-${locale}.png`;
+    await fs.copyFile(path.join(sourceScreenshotsRoot, name), path.join(appleRoot, name));
   }
 }
 

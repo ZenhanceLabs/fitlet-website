@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="4176" height="2752" viewBox="0 0 4176 2752">
+  <title>Fitlet iPad App Store hero screenshots</title>
+  <desc>One iPad home screen placed diagonally across the first two store screenshots.</desc>
+  <defs>
+    <linearGradient id="tabletBody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#111318"/>
+      <stop offset="0.46" stop-color="#30343a"/>
+      <stop offset="1" stop-color="#111318"/>
+    </linearGradient>
+    <filter id="tabletShadow" x="-30%" y="-20%" width="170%" height="160%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="35" stdDeviation="30" flood-color="#111318" flood-opacity="0.24"/>
+    </filter>
+    <clipPath id="homeScreenClip">
+      <rect x="1218" y="124" width="1744" height="2510" rx="96"/>
+    </clipPath>
+  </defs>
+
+  <rect width="4176" height="2752" fill="#e4f5f4"/>
+  <image x="110" y="92" width="350" height="184" xlink:href="./fitlet_logo.svg" preserveAspectRatio="xMidYMid meet"/>
+
+  <g transform="rotate(-25 2088 1376)" filter="url(#tabletShadow)">
+    <rect x="1180" y="80" width="1800" height="2600" rx="126" fill="url(#tabletBody)"/>
+    <rect x="1218" y="124" width="1744" height="2510" rx="96" fill="#ffffff"/>
+    <image x="1218" y="124" width="1744" height="2510" xlink:href="./screens/ipad/en/real-home.png" preserveAspectRatio="none" clip-path="url(#homeScreenClip)"/>
+    <circle cx="2090" cy="165" r="11" fill="#111318"/>
+  </g>
+
+  <g fill="#111318" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif" font-weight="950">
+    <g transform="translate(120 0)">
+      <text x="0" y="2490" font-size="160" letter-spacing="-14.4">Move a little</text>
+      <text x="0" y="2660" font-size="160" letter-spacing="-14.4">Make it a habit</text>
+    </g>
+    <g transform="translate(4056 0)" text-anchor="end">
+      <text x="0" y="318" font-size="160" letter-spacing="-14.4">Move</text>
+      <text x="0" y="488" font-size="160" letter-spacing="-14.4">Map moves</text>
+      <text x="0" y="670" font-size="92" font-weight="780" letter-spacing="-6.4">8 min per session</text>
+    </g>
+  </g>
+  <line x1="120" y1="2700" x2="820" y2="2700" stroke="#20b8c3" stroke-width="12" stroke-linecap="round"/>
+  <line x1="3190" y1="530" x2="4056" y2="530" stroke="#20b8c3" stroke-width="12" stroke-linecap="round"/>
+</svg>
