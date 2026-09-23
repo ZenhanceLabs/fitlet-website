@@ -5,10 +5,12 @@ import sharp from "sharp";
 const root = process.cwd();
 const width = 2064;
 const height = 2752;
-const singleScreenWidth = 1256;
-const singleScreenLeft = 404;
-const singleScreenTop = 925;
-const mapScreenWidth = 1436;
+const singleScreenWidth = 1540;
+const singleScreenLeft = 262;
+const singleScreenTop = 760;
+const singleFadeHeight = 300;
+const mapScreenWidth = 1600;
+const mapFadeHeight = 350;
 const screenshotNames = ["home", "training", "session", "league", "profile", "coach"];
 const colors = {
   home: "#e4f5f4",
@@ -48,9 +50,16 @@ async function rasterizeLogo(filePath, widthPx) {
   return sharp(filePath).resize({ width: widthPx }).png().toBuffer();
 }
 
-async function makeScreen(screenPath) {
-  return sharp(screenPath)
-    .resize(width, height, { fit: "fill" })
+async function makeFadingScreen(screenPath, screenWidth, fadeHeight) {
+  const screenHeight = Math.round((screenWidth * height) / width);
+  const screen = await sharp(screenPath)
+    .resize(screenWidth, screenHeight, { fit: "fill" })
+    .png()
+    .toBuffer();
+  const mask = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${screenWidth}" height="${screenHeight}"><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="${Math.max(0, screenHeight - fadeHeight) / screenHeight}" stop-color="white" stop-opacity="1"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#fade)"/></svg>`);
+  return sharp(screen)
+    .ensureAlpha()
+    .composite([{ input: mask, blend: "dest-in" }])
     .png()
     .toBuffer();
 }
@@ -86,8 +95,7 @@ async function makeSingle({ locale, scene }) {
   const bg = colors[scene];
   const output = path.join(storeRoot, locale, `fitlet-${scene}-${locale}.png`);
   const screenPath = path.join(sourceRoot, locale, `real-${scene}.png`);
-  const screen = await makeScreen(screenPath);
-  const scaledScreen = await sharp(screen).resize({ width: singleScreenWidth }).png().toBuffer();
+  const scaledScreen = await makeFadingScreen(screenPath, singleScreenWidth, singleFadeHeight);
   const logoWidth = 320;
   const logo = await rasterizeLogo(logoPath, logoWidth);
   const layers = [
@@ -108,12 +116,10 @@ async function makeSingle({ locale, scene }) {
 async function makeMapSpread(locale) {
   const spreadWidth = width * 2 + 48;
   const screenPath = path.join(sourceRoot, locale, "real-home.png");
-  const screen = await makeScreen(screenPath);
-  const rotated = await sharp(screen)
-    .resize({ width: mapScreenWidth })
+  const rotated = await makeFadingScreen(screenPath, mapScreenWidth, mapFadeHeight).then((screen) => sharp(screen)
     .rotate(-25, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
-    .toBuffer();
+    .toBuffer());
   const rotatedMeta = await sharp(rotated).metadata();
   const rotatedLeft = Math.floor((spreadWidth - rotatedMeta.width) / 2);
   const rotatedTop = Math.max(0, Math.floor((height - rotatedMeta.height) / 2));
