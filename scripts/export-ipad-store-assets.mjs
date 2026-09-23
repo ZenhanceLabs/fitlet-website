@@ -3,17 +3,8 @@ import path from "node:path";
 import sharp from "sharp";
 
 const root = process.cwd();
-const bezelPath = process.env.FITLET_APPLE_IPAD_BEZEL;
-if (!bezelPath) {
-  throw new Error("FITLET_APPLE_IPAD_BEZEL にApple公式13インチiPadベゼルPNGのパスを指定してください。");
-}
-
 const width = 2064;
 const height = 2752;
-const screenLeft = 118;
-const screenTop = 124;
-const bezelWidth = 2300;
-const bezelHeight = 3000;
 const screenshotNames = ["home", "training", "session", "league", "profile", "coach"];
 const colors = {
   home: "#e4f5f4",
@@ -53,19 +44,9 @@ async function rasterizeLogo(filePath, widthPx) {
   return sharp(filePath).resize({ width: widthPx }).png().toBuffer();
 }
 
-async function makeDevice(screenPath) {
-  const screen = await sharp(screenPath)
+async function makeScreen(screenPath) {
+  return sharp(screenPath)
     .resize(width, height, { fit: "fill" })
-    .png()
-    .toBuffer();
-  const bezel = await fs.readFile(bezelPath);
-  return sharp({
-    create: { width: bezelWidth, height: bezelHeight, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
-  })
-    .composite([
-      { input: screen, left: screenLeft, top: screenTop },
-      { input: bezel, left: 0, top: 0 },
-    ])
     .png()
     .toBuffer();
 }
@@ -93,13 +74,13 @@ async function makeSingle({ locale, scene }) {
   const bg = colors[scene];
   const output = path.join(storeRoot, locale, `fitlet-${scene}-${locale}.png`);
   const screenPath = path.join(sourceRoot, locale, `real-${scene}.png`);
-  const device = await makeDevice(screenPath);
-  const scaledDevice = await sharp(device).resize({ width: 1400 }).png().toBuffer();
+  const screen = await makeScreen(screenPath);
+  const scaledScreen = await sharp(screen).resize({ width: 1300 }).png().toBuffer();
   const logo = await rasterizeLogo(logoPath, 430);
   const layers = [
     { input: logo, left: 140, top: 92 },
     { input: textSvg({ locale, scene, widthPx: width, heightPx: height }), left: 0, top: 0 },
-    { input: scaledDevice, left: 332, top: 850 },
+    { input: scaledScreen, left: 382, top: 850 },
   ];
   if (scene === "coach") layers.push({ input: await rasterizeLogo(proLogoPath, 430), left: width - 570, top: 100 });
   await sharp({ create: { width, height, channels: 3, background: bg } })
@@ -114,8 +95,8 @@ async function makeSingle({ locale, scene }) {
 async function makeMapSpread(locale) {
   const spreadWidth = width * 2 + 48;
   const screenPath = path.join(sourceRoot, locale, "real-home.png");
-  const device = await makeDevice(screenPath);
-  const rotated = await sharp(device)
+  const screen = await makeScreen(screenPath);
+  const rotated = await sharp(screen)
     .resize({ width: 1600 })
     .rotate(-25, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
@@ -158,4 +139,4 @@ for (const locale of ["ja", "en"]) {
   for (const scene of screenshotNames.filter((name) => name !== "home")) await makeSingle({ locale, scene });
 }
 
-console.log("Exported iPad store assets with Apple's official iPad Pro (M5) bezel.");
+console.log("Exported bezel-free iPad store assets.");
