@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { publicAsset } from "../lib/publicAsset";
 
-const storeImageVersion = "2026-09-10-1";
+const storeImageVersion = "2026-09-23-1";
 
 const scenes = {
   home: {
@@ -114,6 +114,13 @@ function isSceneKey(value: string | null): value is SceneKey {
 
 function StoreShotCanvas({ sceneKey, locale, device }: { sceneKey: SceneKey; locale: LocaleKey; device: DeviceKey }) {
   const scene = locale === "en" ? englishScenes[sceneKey] : scenes[sceneKey];
+  if (device === "ipad") {
+    return (
+      <main className="store-shot store-shot-ipad-final" data-scene={sceneKey}>
+        <img src={publicAsset(`/store/ipad/${locale}/fitlet-${sceneKey}-${locale}.png?v=${storeImageVersion}`)} alt="" />
+      </main>
+    );
+  }
   const imageSource = device === "ipad" ? ipadScreenSources[locale][sceneKey] : scene.src;
 
   return (

@@ -1,6 +1,6 @@
 # Fitlet ストア素材
 
-既存の Fitlet 素材だけを使い、明るい配色・太い輪郭・フラットな面でまとめた日本語・英語のストア素材です。フィーチャーグラフィックはロゴと既存キャラクターだけでシンプルに、最初の2枚は1枚のホームマップ画面を大きく斜めに横たわせて左右2枚にまたがせています。ストア表示時の隙間を見越して、編集元の連結キャンバスには中央32pxの想定ガターを設け、右側の書き出し範囲をずらしています。編集元は `source/` にあります。PNG は `node scripts/export-store-assets.mjs` で再出力できます。
+既存の Fitlet 素材だけを使い、明るい配色・太い輪郭・フラットな面でまとめた日本語・英語のストア素材です。フィーチャーグラフィックはロゴと既存キャラクターだけでシンプルに、最初の2枚は1枚のホームマップ画面を大きく斜めに横たわせて左右2枚にまたがせています。iPad用の端末フレームにはApple公式のiPad Pro (M5) 13インチベゼルを使用しています。編集元は `source/` にあります。iPhone用PNGは `node scripts/export-store-assets.mjs`、iPad用PNGはApple公式ベゼルPNGを指定して `node scripts/export-ipad-store-assets.mjs` で再出力できます。
 
 Appleの提出用スクリーンショットは、iPhone用を `1284 × 2778 px`、iPad 13インチ用を `2064 × 2752 px` に統一しています。`apple/screenshots/` 内には入稿用画像だけを置き、2枚連結の確認用画像は `previews/apple/` に分けています。
 
@@ -26,7 +26,7 @@ Appleの提出用スクリーンショットは、iPhone用を `1284 × 2778 px`
 - `apple/screenshots/ipad/ja/` — 日本語のiPad用提出画像。マップを跨ぐ1・2枚目と、Session / Training / League / Profile / Coach を含む7枚。全て `2064 × 2752 px`。
 - `apple/screenshots/ipad/en/` — 英語のiPad用提出画像。全て `2064 × 2752 px`。
 - `previews/apple/ipad/fitlet-map-spread-ja.png` / `fitlet-map-spread-en.png` — 1・2枚目の連結確認用プレビュー。入稿には使いません。
-- 元画像は `source/screens/ipad/ja/` / `source/screens/ipad/en/`、マップの連結元は `source/ipad-map-spread-ja.svg` / `source/ipad-map-spread-en.svg` です。
+- 元画像は `source/screens/ipad/ja/` / `source/screens/ipad/en/` です。iPad用の合成処理は `scripts/export-ipad-store-assets.mjs` にあり、Apple公式ベゼルの元ファイルはAppleのライセンス条件に従ってリポジトリへ同梱していません。
 
 ### Google Play
 
@@ -49,6 +49,8 @@ Appleの提出用スクリーンショットは、iPhone用を `1284 × 2778 px`
   <https://developer.apple.com/design/human-interface-guidelines/app-icons>
 - Apple の iPad 13インチ用スクリーンショットは、縦向き `2064 × 2752 px` または `2048 × 2732 px`（横向きも受付）です。
   <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications>
+- Apple公式の製品ベゼル素材（iPad Pro (M5)）
+  <https://developer.apple.com/design/resources/>
 - Apple の iPhone 6.9 インチ縦スクリーンショットは端末によって 1260 × 2736 / 1290 × 2796 / 1320 × 2868 px が受け付けられます。スクリーンショットは透過不可です。
   <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/>
 - Google Play の掲載アイコンは 512 × 512、32-bit PNG、sRGB、1 MB 以下。完全な正方形で、角丸と外側の影は Play 側が処理します。
