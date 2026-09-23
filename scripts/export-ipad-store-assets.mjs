@@ -5,6 +5,10 @@ import sharp from "sharp";
 const root = process.cwd();
 const width = 2064;
 const height = 2752;
+const singleScreenWidth = 1256;
+const singleScreenLeft = 404;
+const singleScreenTop = 925;
+const mapScreenWidth = 1436;
 const screenshotNames = ["home", "training", "session", "league", "profile", "coach"];
 const colors = {
   home: "#e4f5f4",
@@ -64,11 +68,11 @@ async function textSvg({ locale, scene, widthPx, heightPx, map = false }) {
   const detailSize = map ? 92 : locale === "en" ? 72 : 88;
   const titleLineHeight = titleSize * 1.02;
   const titleX = map ? (locale === "ja" ? 4056 : 4056) : widthPx / 2;
-  const titleY = map ? 318 : 330;
+  const titleY = map ? 318 : 390;
   const anchor = map ? "end" : "middle";
   const titleTransform = map ? "" : "";
   const lines = content.title.map((line, index) => `<text x="${titleX}" y="${titleY + index * titleLineHeight}" text-anchor="${anchor}" font-size="${titleSize}" letter-spacing="${-titleSize * 0.09}">${line}</text>`).join("");
-  const detailY = map ? 670 : titleY + titleLineHeight * content.title.length + 100;
+  const detailY = map ? 670 : titleY + titleLineHeight * (content.title.length - 1) + titleSize * 0.92;
   const detail = `<text x="${titleX}" y="${detailY}" text-anchor="${anchor}" font-size="${detailSize}" font-weight="780" letter-spacing="${-detailSize * 0.07}">${content.detail}</text>`;
   const titleUnderlineY = titleY + titleLineHeight * (content.title.length - 1) + titleSize * 0.24;
   const titleUnderlineWidth = map ? 0 : await measureTextWidth({ text: content.title[content.title.length - 1], fontSize: titleSize, letterSpacing: -titleSize * 0.09, fontFamily });
@@ -83,13 +87,13 @@ async function makeSingle({ locale, scene }) {
   const output = path.join(storeRoot, locale, `fitlet-${scene}-${locale}.png`);
   const screenPath = path.join(sourceRoot, locale, `real-${scene}.png`);
   const screen = await makeScreen(screenPath);
-  const scaledScreen = await sharp(screen).resize({ width: 1300 }).png().toBuffer();
+  const scaledScreen = await sharp(screen).resize({ width: singleScreenWidth }).png().toBuffer();
   const logoWidth = 320;
   const logo = await rasterizeLogo(logoPath, logoWidth);
   const layers = [
     { input: logo, left: 140, top: 92 },
     { input: await textSvg({ locale, scene, widthPx: width, heightPx: height }), left: 0, top: 0 },
-    { input: scaledScreen, left: 382, top: 850 },
+    { input: scaledScreen, left: singleScreenLeft, top: singleScreenTop },
   ];
   if (scene === "coach") layers.push({ input: await rasterizeLogo(proLogoPath, logoWidth), left: width - 140 - logoWidth, top: 100 });
   await sharp({ create: { width, height, channels: 3, background: bg } })
@@ -106,7 +110,7 @@ async function makeMapSpread(locale) {
   const screenPath = path.join(sourceRoot, locale, "real-home.png");
   const screen = await makeScreen(screenPath);
   const rotated = await sharp(screen)
-    .resize({ width: 1600 })
+    .resize({ width: mapScreenWidth })
     .rotate(-25, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
     .toBuffer();
