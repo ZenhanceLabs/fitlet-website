@@ -51,7 +51,13 @@ async function makeScreen(screenPath) {
     .toBuffer();
 }
 
-function textSvg({ locale, scene, widthPx, heightPx, map = false }) {
+async function measureTextWidth({ text, fontSize, letterSpacing, fontFamily }) {
+  const svg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="400"><style>text{font-family:${fontFamily};font-weight:950;fill:#111318;}</style><text x="200" y="${fontSize}" font-size="${fontSize}" letter-spacing="${letterSpacing}">${text}</text></svg>`);
+  const { info } = await sharp(svg).png().trim().toBuffer({ resolveWithObject: true });
+  return info.width;
+}
+
+async function textSvg({ locale, scene, widthPx, heightPx, map = false }) {
   const content = copy[locale][scene];
   const fontFamily = "-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', Arial, sans-serif";
   const titleSize = map ? 160 : locale === "en" ? 154 : 170;
@@ -64,9 +70,11 @@ function textSvg({ locale, scene, widthPx, heightPx, map = false }) {
   const lines = content.title.map((line, index) => `<text x="${titleX}" y="${titleY + index * titleLineHeight}" text-anchor="${anchor}" font-size="${titleSize}" letter-spacing="${-titleSize * 0.09}">${line}</text>`).join("");
   const detailY = map ? 670 : titleY + titleLineHeight * content.title.length + 100;
   const detail = `<text x="${titleX}" y="${detailY}" text-anchor="${anchor}" font-size="${detailSize}" font-weight="780" letter-spacing="${-detailSize * 0.07}">${content.detail}</text>`;
+  const titleUnderlineY = titleY + titleLineHeight * (content.title.length - 1) + titleSize * 0.24;
+  const titleUnderlineWidth = map ? 0 : await measureTextWidth({ text: content.title[content.title.length - 1], fontSize: titleSize, letterSpacing: -titleSize * 0.09, fontFamily });
   const underline = map
     ? `<line x1="${locale === "ja" ? 3190 : 3290}" y1="530" x2="4056" y2="530" stroke="#20b8c3" stroke-width="12" stroke-linecap="round"/>`
-    : `<line x1="${widthPx / 2 - 430}" y1="${detailY - detailSize * 0.78}" x2="${widthPx / 2 + 430}" y2="${detailY - detailSize * 0.78}" stroke="${colors[scene] === "#eef6d6" ? "#75bd4d" : "#20b8c3"}" stroke-width="12" stroke-linecap="round"/>`;
+    : `<line x1="${widthPx / 2 - titleUnderlineWidth / 2}" y1="${titleUnderlineY}" x2="${widthPx / 2 + titleUnderlineWidth / 2}" y2="${titleUnderlineY}" stroke="${colors[scene] === "#eef6d6" ? "#75bd4d" : "#20b8c3"}" stroke-width="12" stroke-linecap="round"/>`;
   return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${widthPx}" height="${heightPx}"><style>text{font-family:${fontFamily};font-weight:950;fill:#111318;}</style>${titleTransform}${lines}${detail}${underline}</svg>`);
 }
 
@@ -79,7 +87,7 @@ async function makeSingle({ locale, scene }) {
   const logo = await rasterizeLogo(logoPath, 430);
   const layers = [
     { input: logo, left: 140, top: 92 },
-    { input: textSvg({ locale, scene, widthPx: width, heightPx: height }), left: 0, top: 0 },
+    { input: await textSvg({ locale, scene, widthPx: width, heightPx: height }), left: 0, top: 0 },
     { input: scaledScreen, left: 382, top: 850 },
   ];
   if (scene === "coach") layers.push({ input: await rasterizeLogo(proLogoPath, 430), left: width - 570, top: 100 });
