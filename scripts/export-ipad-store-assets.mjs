@@ -84,13 +84,14 @@ async function makeSingle({ locale, scene }) {
   const screenPath = path.join(sourceRoot, locale, `real-${scene}.png`);
   const screen = await makeScreen(screenPath);
   const scaledScreen = await sharp(screen).resize({ width: 1300 }).png().toBuffer();
-  const logo = await rasterizeLogo(logoPath, 430);
+  const logoWidth = 320;
+  const logo = await rasterizeLogo(logoPath, logoWidth);
   const layers = [
     { input: logo, left: 140, top: 92 },
     { input: await textSvg({ locale, scene, widthPx: width, heightPx: height }), left: 0, top: 0 },
     { input: scaledScreen, left: 382, top: 850 },
   ];
-  if (scene === "coach") layers.push({ input: await rasterizeLogo(proLogoPath, 430), left: width - 570, top: 100 });
+  if (scene === "coach") layers.push({ input: await rasterizeLogo(proLogoPath, logoWidth), left: width - 140 - logoWidth, top: 100 });
   await sharp({ create: { width, height, channels: 3, background: bg } })
     .composite(layers)
     .flatten({ background: bg })
