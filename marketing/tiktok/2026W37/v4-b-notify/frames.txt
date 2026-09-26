@@ -1,0 +1,17 @@
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-00-door.png'
+duration 0.65
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-01-close.png'
+duration 0.75
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-02-yes.png'
+duration 1.80
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-03-workout.png'
+duration 1.00
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-04-club.png'
+duration 1.30
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-05-tomorrow.png'
+duration 2.00
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-06-slam.png'
+duration 1.30
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-07-loop.png'
+duration 1.20
+file '/Users/berry/Dev/Fitlet/marketing/tiktok/2026W37/v4-b-notify/frames/frame-00-door.png'
