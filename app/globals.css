@@ -771,9 +771,13 @@ img { display: block; max-width: 100%; }
 .fitlet-new-hero h1 { margin: 18px 0 28px; font-size: clamp(58px, 7.3vw, 96px); font-weight: 950; line-height: .98; }
 .fitlet-new-hero h1 span { color: #e96e55; }
 .fitlet-new-lead { max-width: 510px; margin-bottom: 34px; color: #454a4d; font-size: 18px; font-weight: 750; line-height: 1.85; }
+.fitlet-new-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.fitlet-new-store-links { display: flex; flex-wrap: wrap; gap: 12px; }
 .fitlet-new-button { display: inline-flex; min-height: 54px; align-items: center; gap: 10px; border-radius: 999px; padding: 0 23px; font-size: 15px; font-weight: 900; transition: transform .2s ease, box-shadow .2s ease; }
 .fitlet-new-button:hover, .fitlet-new-button:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(17,19,24,.16); }
 .fitlet-new-button-dark { background: var(--new-ink); color: #fff; }
+.fitlet-new-button-store { border: 1px solid var(--new-line); background: #fff; color: var(--new-ink); }
+.fitlet-new-today-stores .fitlet-new-button-store { border-color: var(--new-ink); background: var(--new-ink); color: #fff; }
 .fitlet-new-hero-shot { width: min(390px, 100%); justify-self: center; transform: rotate(2deg); }
 .fitlet-new-hero-shot img { display: block; width: 100%; border: 8px solid #17191d; border-radius: 46px; box-shadow: 24px 26px 0 rgba(17,19,24,.08), 0 34px 58px rgba(17,19,24,.18); }
 .fitlet-new-feature-intro { padding-block: 122px 118px; border-top: 1px solid var(--new-line); }
@@ -888,7 +892,8 @@ img { display: block; max-width: 100%; }
   .fitlet-new-today { padding-bottom: 64px; }
   .fitlet-new-today-card { display: block; min-height: 0; padding: 28px 24px 30px; }
   .fitlet-new-today-card h2 { font-size: 43px; }
-  .fitlet-new-today-card .fitlet-new-button { margin-top: 30px; }
+  .fitlet-new-today-stores { margin-top: 30px; }
+  .fitlet-new-today-card .fitlet-new-button { margin-top: 0; }
   .fitlet-new-footer { display: block; padding-bottom: 42px; }
   .fitlet-new-footer nav { flex-wrap: wrap; gap: 14px 18px; margin-top: 26px; }
 }
@@ -1228,3 +1233,4 @@ html[lang="en"] .fitlet-new-friend-hero h1 { letter-spacing: -.045em; }
 @media (max-width: 560px) {
   .store-shot-gallery-grid { grid-template-columns: 1fr; }
 }
+

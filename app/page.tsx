@@ -6,6 +6,33 @@ import { useLocale } from "./lib/locale";
 import { localizedSitePath } from "./lib/locale";
 import { publicAsset } from "./lib/publicAsset";
 
+const STORE_LINKS = [
+  {
+    key: "app-store",
+    href: "https://apps.apple.com/jp/app/fitlet-%E6%A5%BD%E3%81%97%E3%81%8F%E7%B6%9A%E3%81%8F%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%8D%E3%82%B9/id6797013255",
+    label: { ja: "App Storeでダウンロード", en: "Download on the App Store" },
+    ariaLabel: { ja: "App StoreでFitletを入手", en: "Download Fitlet on the App Store" },
+  },
+  {
+    key: "google-play",
+    href: "https://play.google.com/store/apps/details?id=com.zenhance.fitlet&pcampaignid=web_share",
+    label: { ja: "Google Playでダウンロード", en: "Get it on Google Play" },
+    ariaLabel: { ja: "Google PlayでFitletを入手", en: "Get Fitlet on Google Play" },
+  },
+] as const;
+
+function StoreLinks({ locale, className = "" }: { locale: "ja" | "en"; className?: string }) {
+  return (
+    <div className={`fitlet-new-store-links ${className}`.trim()}>
+      {STORE_LINKS.map((store) => (
+        <a className="fitlet-new-button fitlet-new-button-store" href={store.href} key={store.key} target="_blank" rel="noopener noreferrer" aria-label={store.ariaLabel[locale]}>
+          {store.label[locale]} <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 type ScreenCardProps = {
   className: string;
   label: string;
@@ -89,7 +116,6 @@ export default function Home() {
     todayLabel: "Fitlet",
     todayTitle: <>Start with one<br />thing today.</>,
     todayBody: "One thing today can be the reason you move tomorrow.",
-    todayButton: "Get in touch",
     footerTagline: "Move a little. Make it a habit.",
     footerLabel: "Footer navigation",
   } : {
@@ -135,7 +161,6 @@ export default function Home() {
     todayLabel: "Fitlet",
     todayTitle: <>まずは、<br />今日のひとつから。</>,
     todayBody: "今日のひとつが、明日も動くきっかけになる。",
-    todayButton: "お問い合わせを見る",
     footerTagline: "ちょっと動くを、習慣に。",
     footerLabel: "フッターナビゲーション",
   };
@@ -161,7 +186,10 @@ export default function Home() {
           <p className="fitlet-new-label">{copy.heroLabel}</p>
           <h1>{copy.heroTitle}</h1>
           <p className="fitlet-new-lead">{copy.heroLead}</p>
-          <a className="fitlet-new-button fitlet-new-button-dark" href="#features">{copy.heroButton} <span aria-hidden="true">↗</span></a>
+          <div className="fitlet-new-hero-actions">
+            <a className="fitlet-new-button fitlet-new-button-dark" href="#features">{copy.heroButton} <span aria-hidden="true">↗</span></a>
+            <StoreLinks locale={locale} />
+          </div>
         </div>
         <PhoneFrame className="fitlet-new-hero-device" src={screen("home")} alt={copy.heroAlt} />
       </section>
@@ -210,7 +238,7 @@ export default function Home() {
         <section className="fitlet-new-today fitlet-new-shell" id="start">
           <div className="fitlet-new-today-card">
             <div><p className="fitlet-new-label">{copy.todayLabel}</p><h2>{copy.todayTitle}</h2><p>{copy.todayBody}</p></div>
-            <a className="fitlet-new-button fitlet-new-button-dark" href={localizedSitePath("/support", locale)}>{copy.todayButton} <span aria-hidden="true">↗</span></a>
+            <StoreLinks locale={locale} className="fitlet-new-today-stores" />
           </div>
         </section>
 

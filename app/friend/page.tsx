@@ -59,7 +59,7 @@ export default function FriendLinkPage() {
               <a className="fitlet-new-button fitlet-new-button-light" href={localizedSitePath("/", locale)}>{isEnglish ? "See how Fitlet works" : "Fitletの紹介を見る"} <span aria-hidden="true">↗</span></a>
             </div>
             {friendCode && <p className="fitlet-new-friend-launch" role="status">{isEnglish ? (launchState === "launching" ? "Opening the Fitlet app…" : launchState === "fallback" ? "Taking you to the Fitlet homepage…" : "Preparing the Fitlet app…") : (launchState === "launching" ? "Fitletアプリを開いています…" : launchState === "fallback" ? "Fitletホームページへ移動します…" : "Fitletアプリを準備しています…")}</p>}
-            <p className="fitlet-new-friend-note">{isEnglish ? "If the app does not open, visit the Fitlet homepage. Once the app is published, this link will guide you to the app store." : "アプリが開かない場合は、Fitletホームページをご覧ください。アプリ公開後はアプリストアへ案内します。"}</p>
+            <p className="fitlet-new-friend-note">{isEnglish ? "If the app does not open, visit the Fitlet homepage and choose your app store." : "アプリが開かない場合は、Fitletホームページから利用するアプリストアを選べます。"}</p>
           </section>
         </Reveal>
       </SiteChrome>
