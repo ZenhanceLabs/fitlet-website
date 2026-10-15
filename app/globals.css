@@ -776,8 +776,11 @@ img { display: block; max-width: 100%; }
 .fitlet-new-button { display: inline-flex; min-height: 54px; align-items: center; gap: 10px; border-radius: 999px; padding: 0 23px; font-size: 15px; font-weight: 900; transition: transform .2s ease, box-shadow .2s ease; }
 .fitlet-new-button:hover, .fitlet-new-button:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(17,19,24,.16); }
 .fitlet-new-button-dark { background: var(--new-ink); color: #fff; }
-.fitlet-new-button-store { border: 1px solid var(--new-line); background: #fff; color: var(--new-ink); }
-.fitlet-new-today-stores .fitlet-new-button-store { border-color: var(--new-ink); background: var(--new-ink); color: #fff; }
+.fitlet-new-button-store { min-height: auto; border: 0; border-radius: 0; padding: 0; background: transparent; color: inherit; line-height: 0; transition: none; }
+.fitlet-new-button-store img { display: block; width: auto; max-width: 100%; height: 56px; object-fit: contain; }
+.fitlet-new-button-store:hover, .fitlet-new-button-store:focus-visible { transform: none; box-shadow: none; }
+.fitlet-new-button-store:focus-visible { outline: 3px solid #21a6a6; outline-offset: 4px; }
+.fitlet-new-today-stores .fitlet-new-button-store { border: 0; background: transparent; color: inherit; }
 .fitlet-new-hero-shot { width: min(390px, 100%); justify-self: center; transform: rotate(2deg); }
 .fitlet-new-hero-shot img { display: block; width: 100%; border: 8px solid #17191d; border-radius: 46px; box-shadow: 24px 26px 0 rgba(17,19,24,.08), 0 34px 58px rgba(17,19,24,.18); }
 .fitlet-new-feature-intro { padding-block: 122px 118px; border-top: 1px solid var(--new-line); }
@@ -863,6 +866,8 @@ img { display: block; max-width: 100%; }
   .fitlet-new-hero { display: block; padding-block: 62px 92px; }
   .fitlet-new-hero h1 { font-size: clamp(52px, 15vw, 72px); }
   .fitlet-new-lead { font-size: 16px; }
+  .fitlet-new-store-links { gap: 8px; }
+  .fitlet-new-button-store img { height: 44px; }
   .fitlet-new-hero-shot { width: min(330px, 84%); margin: 62px auto 0; }
   .fitlet-new-feature-intro { padding-block: 82px 86px; }
   .fitlet-new-feature-intro h2, .fitlet-new-section-head h2 { font-size: clamp(42px, 13vw, 62px); }

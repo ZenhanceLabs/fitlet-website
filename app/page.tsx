@@ -10,13 +10,13 @@ const STORE_LINKS = [
   {
     key: "app-store",
     href: "https://apps.apple.com/jp/app/fitlet-%E6%A5%BD%E3%81%97%E3%81%8F%E7%B6%9A%E3%81%8F%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%8D%E3%82%B9/id6797013255",
-    label: { ja: "App Storeでダウンロード", en: "Download on the App Store" },
+    badge: { ja: "/store-assets/badges/app-store-ja.svg", en: "/store-assets/badges/app-store-en.svg" },
     ariaLabel: { ja: "App StoreでFitletを入手", en: "Download Fitlet on the App Store" },
   },
   {
     key: "google-play",
     href: "https://play.google.com/store/apps/details?id=com.zenhance.fitlet&pcampaignid=web_share",
-    label: { ja: "Google Playでダウンロード", en: "Get it on Google Play" },
+    badge: { ja: "/store-assets/badges/google-play-ja.png", en: "/store-assets/badges/google-play-en.png" },
     ariaLabel: { ja: "Google PlayでFitletを入手", en: "Get Fitlet on Google Play" },
   },
 ] as const;
@@ -26,7 +26,7 @@ function StoreLinks({ locale, className = "" }: { locale: "ja" | "en"; className
     <div className={`fitlet-new-store-links ${className}`.trim()}>
       {STORE_LINKS.map((store) => (
         <a className="fitlet-new-button fitlet-new-button-store" href={store.href} key={store.key} target="_blank" rel="noopener noreferrer" aria-label={store.ariaLabel[locale]}>
-          {store.label[locale]} <span aria-hidden="true">↗</span>
+          <img src={publicAsset(store.badge[locale])} alt="" />
         </a>
       ))}
     </div>
